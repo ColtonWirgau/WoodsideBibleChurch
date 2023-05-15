@@ -50,9 +50,3 @@ h1, h2, h3, h4, h5, h6 {
 #myGivingWrapper {
 	text-align: center;
 }
-
-@media screen and ( max-width: 1300px ) {
-	.mppw-component-container {
-		width: 90%;
-	}
-}
