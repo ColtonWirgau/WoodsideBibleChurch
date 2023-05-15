@@ -5,26 +5,26 @@
 
 
 :host {
- --innerPage-primaryColor: #62BB46;
- --innerPage-h3color: #1C2B39;
- --innerPage-buttonHoverBgColor: #1C2B39;
- --innerPage-buttonActiveBgColor: #1C2B39;
- --innerPage-progressBarColor: #62BB46;
- --innerPage-progressBarCompleteColor: #62BB46;
- --innerPage-linkColor: #62BB46;
- --innerPage-linkHoverColor: #1C2B39;
- --innerPage-linkActiveColor: #1C2B39;
- --primary: #62BB46;
- --form-btn-primary-bgcolor: #62BB46;
- --form-btn-primary-hover: #1C2B39;
- --form-btn-primary-active: #1C2B39;
- --form-field-border--active: #1C2B39;
+    --innerPage-primaryColor: #62BB46;
+    --innerPage-h3color: #1C2B39;
+    --innerPage-buttonHoverBgColor: #1C2B39;
+    --innerPage-buttonActiveBgColor: #1C2B39;
+    --innerPage-progressBarColor: #62BB46;
+    --innerPage-progressBarCompleteColor: #62BB46;
+    --innerPage-linkColor: #62BB46;
+    --innerPage-linkHoverColor: #1C2B39;
+    --innerPage-linkActiveColor: #1C2B39;
+    --primary: #62BB46;
+    --form-btn-primary-bgcolor: #62BB46;
+    --form-btn-primary-hover: #1C2B39;
+    --form-btn-primary-active: #1C2B39;
+    --form-field-border--active: #1C2B39;
 }
 
 .mpp-card-multiselect--checkbox > span:nth-child(2) {
-	background: #62BB46 !important;
-  border-color: #62BB46 !important;
-  border-radius: 0;
+    background: #62BB46 !important;
+    border-color: #62BB46 !important;
+    border-radius: 0;
 }
 
 * {
