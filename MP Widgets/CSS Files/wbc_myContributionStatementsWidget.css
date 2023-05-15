@@ -24,6 +24,7 @@
 .mpp-card-multiselect--checkbox > span:nth-child(2) {
 	background: #62BB46 !important;
   border-color: #62BB46 !important;
+  border-radius: 0;
 }
 
 * {
