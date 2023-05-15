@@ -5,20 +5,22 @@
 
 
 :host {
-    --innerPage-primaryColor: #62BB46;
-    --innerPage-h3color: #1C2B39;
-    --innerPage-buttonHoverBgColor: #1C2B39;
-    --innerPage-buttonActiveBgColor: #1C2B39;
-    --innerPage-progressBarColor: #62BB46;
-    --innerPage-progressBarCompleteColor: #62BB46;
-    --innerPage-linkColor: #62BB46;
-    --innerPage-linkHoverColor: #1C2B39;
-    --innerPage-linkActiveColor: #1C2B39;
-    --primary: #62BB46;
-    --form-btn-primary-bgcolor: #62BB46;
-    --form-btn-primary-hover: #1C2B39;
-    --form-btn-primary-active: #1C2B39;
-    --form-field-border--active: #1C2B39;
+	--wbc-green: #62BB46;
+	--wbc-blue: #1C2B39;
+    --innerPage-primaryColor: var(--wbc-green);
+    --innerPage-h3color: var(--wbc-blue);
+    --innerPage-buttonHoverBgColor: var(--wbc-blue);
+    --innerPage-buttonActiveBgColor: var(--wbc-blue);
+    --innerPage-progressBarColor: var(--wbc-green);
+    --innerPage-progressBarCompleteColor: var(--wbc-green);
+    --innerPage-linkColor: var(--wbc-green);
+    --innerPage-linkHoverColor: var(--wbc-blue);
+    --innerPage-linkActiveColor: var(--wbc-blue);
+    --primary: var(--wbc-green);
+    --form-btn-primary-bgcolor: var(--wbc-green);
+    --form-btn-primary-hover: var(--wbc-blue);
+    --form-btn-primary-active: var(--wbc-blue);
+    --form-field-border--active: var(--wbc-blue);
 }
 
 .mpp-card-multiselect--checkbox > span:nth-child(2) {
@@ -55,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 #pageTitle {
-	color: black;
+	color: var(--wbc-blue);;
 	text-align: center;
 }
 

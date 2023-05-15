@@ -6,20 +6,20 @@
 :host {
 	--wbc-green: #62BB46;
 	--wbc-blue: #1C2B39;
- --innerPage-primaryColor: var(--wbc-green);
- --innerPage-h3color: var(--wbc-blue);
- --innerPage-buttonHoverBgColor: var(--wbc-blue);
- --innerPage-buttonActiveBgColor: var(--wbc-blue);
- --innerPage-progressBarColor: var(--wbc-green);
- --innerPage-progressBarCompleteColor: var(--wbc-green);
- --innerPage-linkColor: var(--wbc-green);
- --innerPage-linkHoverColor: var(--wbc-blue);
- --innerPage-linkActiveColor: var(--wbc-blue);
- --primary: var(--wbc-green);
- --form-btn-primary-bgcolor: var(--wbc-green);
- --form-btn-primary-hover: var(--wbc-blue);
- --form-btn-primary-active: var(--wbc-blue);
- --form-field-border--active: var(--wbc-blue);
+    --innerPage-primaryColor: var(--wbc-green);
+    --innerPage-h3color: var(--wbc-blue);
+    --innerPage-buttonHoverBgColor: var(--wbc-blue);
+    --innerPage-buttonActiveBgColor: var(--wbc-blue);
+    --innerPage-progressBarColor: var(--wbc-green);
+    --innerPage-progressBarCompleteColor: var(--wbc-green);
+    --innerPage-linkColor: var(--wbc-green);
+    --innerPage-linkHoverColor: var(--wbc-blue);
+    --innerPage-linkActiveColor: var(--wbc-blue);
+    --primary: var(--wbc-green);
+    --form-btn-primary-bgcolor: var(--wbc-green);
+    --form-btn-primary-hover: var(--wbc-blue);
+    --form-btn-primary-active: var(--wbc-blue);
+    --form-field-border--active: var(--wbc-blue);
 }
 
 * {
@@ -49,4 +49,5 @@ h1, h2, h3, h4, h5, h6 {
 
 #myGivingWrapper {
 	text-align: center;
+    color: var(--wbc-blue);
 }
