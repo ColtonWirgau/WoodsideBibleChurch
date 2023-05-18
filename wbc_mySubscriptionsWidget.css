@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mpp-subscriptions--body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.collapse--toggle {
+    display: none !important;;
+}
+
+.mpp-card-multiselect {
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    flex: 1 0 250px;
+    position: relative;
+    border-color: #77be43 !important;
+    padding: 10px 35px;
+    height: 212px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mpp-subscriptions--body::after {
+  content: '';
+  flex: 1 0 250px;
+}
+
+
+.mpp-card-multiselect--image, .mpp-subscriptions--header {
+    display: none !important;
+}
+
+.mpp-card-multiselect--checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 2%;
+}
+
+.mpp-card-multiselect--text-wrapper {
+    color: #1c2b39;
+}
+
+.mpp-card-multiselect--text-wrapper {
+    margin: 0;
+}
+
+.mpp-card-multiselect--checkbox span {
+    border: 1px solid #77be43;
+    height: 20px;
+    width: 20px;
+    border-radius: 0;
+    margin-top: 8px;
+    transition: transform 0s ease-out;
+}
+
+.mpp-card-multiselect--checkbox input:checked ~ span::after {
+    border-width: 0 2px 2px 0;
+    height: 9px;
+    width: 3px;
+    margin-top: -2px;
+}
+
+.mpp-card-multiselect--checkbox input:checked ~ span {
+    background: #77be43;
+    border-color: #77be43;
+    
+}
+
+.mpp-card-multiselect--checkbox:hover span, .mpp-card-multiselect--checkbox:focus span, .mpp-card-multiselect--checkbox:focus-within span {
+    border-color: #77be43;
+    transform: scale(1.05);
+}
+
+#subscriptionsBody .mpp-card-multiselect--checkbox input ~ span::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: "";
+}
+
+.mpp-card-multiselect--checkbox input:checked ~ span::before {
+    background: rgba(119, 190, 67, 0.2) !important;
+}
+
+.mpp-card-multiselect:hover {
+    background: rgba(119, 190, 67, 0.3) !important;
+}
+
+.collapse--label {
+    display: none !important;
+}
+
+.collapse--content {
+    max-height: 10000000px !important;
+}
+
+#subscriptionsForm .mppw-row > :not(:first-child) { 
+    flex: 0;
+    margin: auto;
+}
+
+
+#updateButton, #loginButton, #verfificationButton, .mpp-subscriptions .mppw-col-4 button  {
+    margin: 0;
+    box-shadow: none;
+    background: #77be43;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .875rem;
+    line-height: 1em;
+    font-weight: 700;
+    margin-top: 2em;
+    padding: 11px 10px;
+    min-width: 100px;
+    border-width: 2px;
+    border: 3px solid #62bb46;
+    transition: background .3s,color .3s,border-color .3s;
+}
+
+#updateButton:hover, #loginButton:hover, #verfificationButton:hover, .mpp-subscriptions .mppw-col-4 button:hover  {
+    background: transparent;
+    border-color: #62bb46;
+    color: #62bb46 !important;
+}
+
+.mppw-col .mpp-card-multiselect--checkbox {
+    position: relative;
+    display: flex;
+    
+}
+
+#subscriptionsForm .mppw-row > :first-child { 
+    display: flex;
+    flex-direction: row;
+    flex: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.mppw-row {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.mppw-col .mppw-left, div.mppw-col:nth-child(1) {
+    width: 100%;
+}
+
+.mppw-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mppw-col .mppw-left span {
+    margin: 0;
+    padding: 0;
+}
+
+.mpp-card-multiselect--title {
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.mpp-subscriptions--description {
+    font-size: 0.7em;
+    line-height: 1.6;
+}
+
+
+
+#subscriptionsEmpty+.mppw-row .mpp-card-multiselect--checkbox {
+    position: absolute !important;
+    top: 13px;
+    left: 10px;
+    
+}
+
+:not(#subscriptionsBody) .mpp-subscriptions--checkboxlabel {
+    padding-left: 30px;
+}
+
+:not(#subscriptionsBody) .mppw-left {
+    max-width: 300px;
+    margin: auto;
+    position: relative;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: black;
+    font-size: 0.85em !important;
+}
+
+
+#subscriptionsForm, #loginButtonContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#subscriptionsResponded, #mySubscriptionsNotLoggedIn {
+    order: 10;
+}
+
+
+
+/* Specific Publication Subscribe */
+.mppw-form-field__label {
+    color: #62BB46 !important;;
+}
+
+.mppw-form-field__control:focus-visible {
+    outline: 0.5px solid #62bb46; 
+    z-index: 10;
+    box-shadow: none;
+}
+
+
+
+.mppw-form-field__control:focus {
+    border-color: #62bb46 !important;;
+    box-shadow: #62bb4673 !important;;
+    padding: 28px 13px 12px 13px;
+}
+
+/* One Click Unubscribe */
+.mpp-subscriptions .mppw-row {
+    gap: 1em;
+}
+
+.mpp-subscriptions .mppw-col-4 button {
+    
+}
+
+/* Mobile/Tablet */
+@media only screen and (max-width: 583px) {
+    .mpp-card-multiselect {
+        height: 100%;
+    }
+
+    #subscriptionsBody {
+        gap: 10px;
+    }
+}
