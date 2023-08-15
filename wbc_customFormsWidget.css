@@ -20,6 +20,9 @@
  --form-field-border--active: #1C2B39;
 }
 
+.mppw-form-field--is-valid .mppw-form-field__control {
+	background: none !important;
+}
 
 .mppw-form-field__control > label > span.mppw-radio {
 	border-radius: 0 !important;
