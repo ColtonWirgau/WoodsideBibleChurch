@@ -21,30 +21,111 @@
 }
 
 
+
+* {
+	color: #565656;
+}
+
+.mppw-form-field--is-valid .mppw-form-field__control {
+	background: none;
+}
+
+.mppw-form-field-alt {
+	border: none;
+	padding: 0 !important;
+}
+
+.mppw-form-field__alt-label-content {
+	font-size: 16px;
+}
+
+.mppw-form-field__alt-label .multiselectOption {
+	font-size: 14px !important;
+}
+
+
+#formFields > div:nth-child(2) > div > .mppw-form-field-alt:first-child {
+	margin-top: 1em !important;
+}
+
+.mppw-form-field__vertical-radio {
+	margin-bottom: 20px !important;
+}
+
+@supports selector(:has(*)) {
+	.mppw-form-field-alt, div :has(> div > div > .multiselect) {
+		margin-top: 3em;
+	}
+
+
+	div :has(> div > div > div > label > label > .multiselectCheckbox) {
+		display: inline-flex !important;
+	}
+
+	.mppw-form-field-alt:has(>.mppw-form-field__control__textarea), div :has(> div >.mppw-form-field-alt > .mppw-form-field__alt-label > .mppw-form-field__alt-label-container > .mppw-form-field__alt-label-content > .multiselectTextbox) {
+		border: 1px solid #b4c5cf;
+		border-radius: 4px;
+		padding: 2px 5px !important;
+	}
+
+	.mppw-form-field-alt:has(> .mppw-form-field__alt-label > .mppw-form-field__alt-label-container > .mppw-form-field__alt-label-content > .multiselectTextbox) {
+		margin-top: 0 !important;
+	}
+	
+	.mppw-form-field__control:has(.mppw-form-field__vertical-radio), .mppw-form-field__control:has(>label>.mppw-radio) {
+		padding-left: 0 !important;
+	}
+	
+	.mppw-form-field__alt-label:has(+ .mppw-form-field__control__textarea){
+	  position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+  }
+	
+	div:has(> div > .mppw-form-field-alt > .mppw-form-field__control__textarea) {
+		position: relative;
+		padding-top: 1px;
+		margin-top: 3em;
+	}
+	
+	.mppw-form-field__control__textarea {
+		margin-bottom: 0 !important;
+		border-radius: 0 !important;
+	}
+}
+
+
+
+
+
+
+
+
 .mppw-form-field__control > label > span.mppw-radio, .mppw-form-field__control > label > span.mppw-radio__vertical {
 	border-radius: 0 !important;
   }
   
-.mppw-form-field__control > label > .mppw-radio::after, .mppw-form-field__control > label > .mppw-radio__vertical::after {
-	background: none !important;
-}
+  .mppw-form-field__control > label > .mppw-radio::after, .mppw-form-field__control > label > .mppw-radio__vertical::after {
+	  background: none !important;
+  }
   
-.mppw-form-field__control > label > .mppw-radio::after, .mppw-form-field__control > label > .mppw-radio__vertical::after {
-	border-radius: 0 !important;
-	left: 6px !important;
-	top: 3px !important;
-	width: 3px !important;
-	height: 8px !important;
-	border: solid white;
-	border-top-width: medium;
-	border-right-width: medium;
-	border-bottom-width: medium;
-	border-left-width: medium;
-	border-width: 0 3px 3px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
+  .mppw-form-field__control > label > .mppw-radio::after, .mppw-form-field__control > label > .mppw-radio__vertical::after {
+	  border-radius: 0 !important;
+	  left: 6px !important;
+	  top: 3px !important;
+	  width: 3px !important;
+	  height: 8px !important;
+	  border: solid white;
+		border-top-width: medium;
+		border-right-width: medium;
+		border-bottom-width: medium;
+		border-left-width: medium;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+  }
   
 
 #updateMyInfoContainer {
