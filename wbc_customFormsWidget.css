@@ -26,6 +26,10 @@
 	color: #565656;
 }
 
+.hide {
+	display: none !important;
+}
+
 .mppw-form-field--is-valid .mppw-form-field__control {
 	background: none;
 }
