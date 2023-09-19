@@ -40,8 +40,8 @@
 }
 
 
-label + input[type="text"], input[type="date"] {
-	border: 1px solid var(--form-field-border) !important;
+.mppw-form-field-alt:not(:has(.multiselectTextbox)) > label + input[type="text"], input[type="date"] {
+	border: 1px solid var(--form-field-border) !important;;
 }
 
 input[data-input-text-counter="true"] {
