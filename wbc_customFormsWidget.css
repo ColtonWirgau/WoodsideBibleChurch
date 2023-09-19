@@ -41,7 +41,7 @@
 
 
 label + input[type="text"], input[type="date"] {
-	border: 1px solid var(--form-field-border);
+	border: 1px solid var(--form-field-border) !important;
 }
 
 input[data-input-text-counter="true"] {
