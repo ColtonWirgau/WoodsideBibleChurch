@@ -39,9 +39,10 @@
 	padding: 0 !important;
 }
 
+/*
 label + input[type="text"], input[type="date"] {
 	border: 1px solid var(--form-field-border);
-}
+}*/
 
 .mppw-form-field__alt-label-content {
 	font-size: 16px;
