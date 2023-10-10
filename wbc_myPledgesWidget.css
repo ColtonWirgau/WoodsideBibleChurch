@@ -240,9 +240,7 @@ h1, h2, h3, h4, h5, h6 {
         gap: 20px;
     }
     
-    #pledgeForm .form--row:nth-child(1) {
-        
-    }
+
     .form--row {
         flex: 1 1 100%;
     }
