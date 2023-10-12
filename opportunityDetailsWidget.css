@@ -20,6 +20,10 @@
  --form-field-border--active: #1C2B39;
 }
 
+.mpp-innerpage--fixed-imgplaceholder {
+	display: none !important;
+}
+
 
 .mppw-form-field__control > label > span.mppw-radio, .mppw-form-field__control > label > span.mppw-radio__vertical {
 	border-radius: 0 !important;
