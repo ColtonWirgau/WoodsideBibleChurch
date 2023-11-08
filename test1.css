@@ -1,4 +1,4 @@
-@import url(test2.css);
+@import "test2.css";
 
 * {
     color: red;
