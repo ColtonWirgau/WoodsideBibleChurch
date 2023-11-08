@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&display=swap');
+@font-face {font-family: 'ProximaNova-Regular';src: url('../webfonts/23533C_8_0.eot');src: url('../webfonts/23533C_8_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/23533C_8_0.woff') format('woff'),url('../webfonts/23533C_8_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Bold';src: url('../webfonts/23533C_A_0.eot');src: url('../webfonts/23533C_A_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/23533C_A_0.woff') format('woff'),url('../webfonts/23533C_A_0.ttf') format('truetype');}
+@font-face {font-family: 'ProximaNova-Semibold';src: url('../webfonts/30622B_2_0.eot');src: url('../webfonts/30622B_2_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/30622B_2_0.woff2') format('woff2'),url('../webfonts/30622B_2_0.woff') format('woff'),url('../webfonts/30622B_2_0.ttf') format('truetype');}
+
+:host {
+ --root-text-color: #000000;
+ --innerPage-primaryColor: #62BB46;
+ --innerPage-h3color: #1C2B39;
+ --innerPage-buttonHoverBgColor: #1C2B39;
+ --innerPage-buttonActiveBgColor: #1C2B39;
+ --innerPage-progressBarColor: #62BB46;
+ --innerPage-progressBarCompleteColor: #62BB46;
+ --innerPage-linkColor: #62BB46;
+ --innerPage-linkHoverColor: #1C2B39;
+ --innerPage-linkActiveColor: #1C2B39;
+ --primary: #62BB46;
+ --form-btn-primary-bgcolor: #62BB46;
+ --form-btn-primary-hover: #1C2B39;
+ --form-btn-primary-active: #1C2B39;
+ --form-field-border--active: #1C2B39;
+ --form-field-color: #000000;
+}
+
+* {
+	font-family: 'ProximaNova-Semibold', Helvetica, Arial, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
+}
+
+.mppw-btn {
+    min-width: 200px;
+    padding: 15px 10px;
+    margin: 0;
+    margin-top: 25px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#myGroupsWrapper, .mpp-card--image {
+    display: none;
+}
+
+.mpp-card--header  {
+    margin-bottom: 1em;
+}
+
+.mpp-card--footer {
+    text-align: center;
+}
