@@ -66,6 +66,10 @@ input[data-input-text-counter="true"] {
 }
 
 @supports selector(:has(*)) {
+	label:has(div > div > .hideChecked), label:has(div > div > .hideChecked) ~ div:has(label > input:checked) {
+		display: none;
+	}
+
 	.mppw-form-field-alt, div :has(> div > div > .multiselect) {
 		margin-top: 3em;
 	}
