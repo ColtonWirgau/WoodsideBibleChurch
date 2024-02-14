@@ -234,10 +234,11 @@ h1, h2, h3, h4, h5, h6 {
 	color: #1C2B39 !important;
 }
 
-#firstName, #lastName, #emailAddress, #mobilePhone {
+#firstName, #lastName, #emailAddress, #mobilePhone, #Country, #addressLine1, #addressLine2, #city, #stateRegion, #postalCode {
 	background-color: rgb(246, 247, 249) !important;
 	border: none !important;
 }
+
 
 @media screen and ( max-width: 1300px ) {
 	.mppw-component-container {
