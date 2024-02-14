@@ -225,6 +225,20 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto;
 }
 
+
+#completeFormAs {
+	border: none;
+}
+
+#completeFormAs + label {
+	color: #1C2B39 !important;
+}
+
+#firstName, #lastName, #emailAddress, #mobilePhone {
+	background-color: rgb(246, 247, 249) !important;
+	border: none !important;
+}
+
 @media screen and ( max-width: 1300px ) {
 	.mppw-component-container {
 		width: 90%;
