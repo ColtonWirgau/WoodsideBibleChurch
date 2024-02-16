@@ -241,6 +241,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .mppw-form-field__message_container {
 	bottom: 12px;
+	top: auto;
 }
 
 @media screen and ( max-width: 1300px ) {
