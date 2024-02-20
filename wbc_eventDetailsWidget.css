@@ -21,6 +21,29 @@
 }
 
 
+/* PRODUCT HANDLING */
+/* This is for hiding the option price row */
+.product-form__control tr:nth-child(1) {
+	display: none;
+}
+
+/* This is for hiding the option price line below the option */
+.option-name, .option-qty, .option-price {
+	border: none !important;
+}
+
+.product-form__control {
+	padding: 0 !important;
+	margin-bottom: 40px !important;
+}
+
+#productOptionsContainer > div > p {
+	padding: 15px 0px !important;
+}
+/* END PRODUCT HANDLING */
+
+
+
 .mppw-form-field__control > label > span.mppw-radio, .mppw-form-field__control > label > span.mppw-radio__vertical {
 	border-radius: 0 !important;
   }
