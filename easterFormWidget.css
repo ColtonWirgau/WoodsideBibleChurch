@@ -223,6 +223,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #submitButton {
     margin: auto;
+	 text-transform: uppercase !important;; 
+    transition: 0.3s;
 }
 
 
@@ -257,9 +259,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .mpp-innerpage { 
     display: none; 
-}
-
-.mppw-btn#submitbutton { 
-    text-transform: uppercase; 
-    transition: 0.3s;
 }
