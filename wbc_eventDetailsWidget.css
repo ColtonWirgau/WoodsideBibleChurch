@@ -40,6 +40,24 @@
 #productOptionsContainer > div > p {
 	padding: 15px 0px !important;
 }
+
+#registrationForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#registrationForm > * {
+	order: 5;
+}
+
+#registrationForm > .mppw-product-description {
+	order: 4;
+}
+
+#registrationForm > :IS(.titleContainer, #eventParticipantsContainer, #priceContainer, #registerAsContainer, #contactInfoForm, #attendeeInfoForm, #parentInfoForm, #addressFormWrapper) {
+	order: 2;
+}
+
 /* END PRODUCT HANDLING */
 
 
