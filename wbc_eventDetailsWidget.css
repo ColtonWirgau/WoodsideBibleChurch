@@ -406,3 +406,24 @@ h1, h2, h3, h4, h5, h6 {
 		width: 90%;
 	}
 }
+
+
+.mppw-radio-gray-out {
+    visibility: hidden;
+}
+
+.mppw-event-gray-out > .option-qty, .mppw-event-gray-out > .option-price {
+    font-style: italic;
+    color: lightgray !important;  /* Looks like you are using an important your CSS flag, so this overrides that other one. */
+}
+
+.product-selection-container:has(.mppw-radio-gray-out) {
+    font-style: italic;
+    color: lightgray;
+}
+
+.product-selection-container:has(.mppw-radio-gray-out):after {
+    font-style: italic;
+    color: lightgray;
+    content: "  – NOT AVAILABLE"
+}
