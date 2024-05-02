@@ -131,6 +131,34 @@
 	padding-bottom: 20px !important;
 }
 
+#promoCodeContainer {
+	display: flex;
+	flex-direction: column
+}
+
+#promoCodeContainer > .mppw-form-field {
+	display: flex;
+	gap: 25px;
+	margin-top: 0px !important;
+}
+
+@media screen and ( max-width: 450px ) {
+	#promoCodeContainer > .mppw-form-field {
+	  flex-direction: column;
+  }
+}
+
+#promoCodeContainer > .mppw-form-field > :is(#promoCodeText, #addPromoCodeButton) {
+	display: flex;
+	font-size: 1em;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	margin: 10px 0px;
+	
+}
+
 /* END PRODUCT HANDLING */
 
 
