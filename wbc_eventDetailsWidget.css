@@ -127,6 +127,10 @@
   transform: rotate(45deg);
 }
 
+.mppw-product-options > tbody > tr > .option-name {
+	padding-bottom: 20px !important;
+}
+
 /* END PRODUCT HANDLING */
 
 
