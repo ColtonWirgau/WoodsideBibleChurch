@@ -288,6 +288,11 @@ h1, h2, h3, h4, h5, h6 {
 	height: 200px !important;
 }
 
+
+#mapAddress, #detailsContainer > .mpp-innerpage--special > .mpp-innerpage--special-content {
+	padding-left: 0;
+}
+
 @media screen and ( max-width: 1300px ) {
 	.mppw-component-container {
 		width: 90%;
