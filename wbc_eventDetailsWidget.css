@@ -136,6 +136,7 @@
 	flex-direction: column;
 	border: none;
 	padding: 0;
+	margin-bottom: 3em;
 }
 
 #promoCodeContainer > h3 {
