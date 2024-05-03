@@ -588,7 +588,7 @@ div:has(> div > div > .mppw-form-field__control:disabled){
   cursor: pointer;
 	top: 0;
 	left: 0;
-	width: 100px;
+	width: 200px;
 	height: 20px;
 }
 
