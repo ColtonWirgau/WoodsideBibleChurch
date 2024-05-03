@@ -592,6 +592,11 @@ div:has(> div > div > .mppw-form-field__control:disabled){
 	height: 20px;
 }
 
+.viewWaiverLabel {
+	font-size: 1.2em;
+  	color: #62BB46;
+}
+
 p:has(.viewWaiver:checked) + .hideWhenNotChecked {
 	display: block !important;
 }
