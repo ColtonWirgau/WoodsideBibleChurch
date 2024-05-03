@@ -133,7 +133,15 @@
 
 #promoCodeContainer {
 	display: flex;
-	flex-direction: column
+	flex-direction: column;
+	border: none;
+	padding: 0;
+}
+
+#promoCodeContainer > h3 {
+	font-size: 16px;
+	font-weight: 400 !important;;
+	color: #565656;
 }
 
 #promoCodeContainer > .mppw-form-field {
@@ -142,9 +150,16 @@
 	margin-top: 0px !important;
 }
 
-@media screen and ( max-width: 450px ) {
+@media screen and ( max-width: 500px ) {
 	#promoCodeContainer > .mppw-form-field {
 	  flex-direction: column;
+		gap: 5px;
+  }
+}
+
+@media screen and ( max-width: 800px ) {
+	#promoCodeContainer > div > * {
+	  max-width: 100% !important;
   }
 }
 
