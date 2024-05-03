@@ -127,8 +127,16 @@
   transform: rotate(45deg);
 }
 
-.mppw-product-options > tbody > tr > .option-name {
-	padding-bottom: 20px !important;
+.mppw-product-options > tbody > tr > * {
+	padding: 0;
+}
+
+
+.mppw-product-options > tbody > tr {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 20px;
 }
 
 #promoCodeContainer {
