@@ -162,6 +162,15 @@
 	#promoCodeContainer > div > * {
 	  max-width: 100% !important;
   }
+
+	#addressFormWrapper > .mppw-row {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	#addressFormWrapper > .mppw-row > * {
+		width: 100% !important;
+	}
 }
 
 #promoCodeContainer > .mppw-form-field > :is(#promoCodeText, #addPromoCodeButton) {
