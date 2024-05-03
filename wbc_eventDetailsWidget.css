@@ -277,6 +277,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #mapContainer {
 	background: transparent !important;
+	display: flex;
+ 	flex-direction: column-reverse;
+  	gap: 2em;
+  	align-items: flex-start;
 }
 
 #map {
