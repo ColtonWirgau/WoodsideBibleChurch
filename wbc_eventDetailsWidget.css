@@ -568,3 +568,21 @@ h1, h2, h3, h4, h5, h6 {
 div:has(> div > div > .mppw-form-field__control:disabled){
 	display: none !important;
 }
+
+.hideWhenNotChecked {
+	display: none;
+}
+
+.viewWaiver {
+	position: absolute;
+  opacity: 0;
+  cursor: pointer;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 20px;
+}
+
+p:has(.viewWaiver:checked) + .hideWhenNotChecked {
+	display: block !important;
+}
