@@ -564,3 +564,7 @@ h1, h2, h3, h4, h5, h6 {
     color: lightgray;
     content: "  – NOT AVAILABLE"
 }
+
+div:has(> div > div > .mppw-form-field__control:disabled){
+	display: none !important;
+}
