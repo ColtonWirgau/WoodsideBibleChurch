@@ -597,6 +597,10 @@ div:has(> div > div > .mppw-form-field__control:disabled){
   	color: #62BB46;
 }
 
+.mppw-form-field:has(> p > .viewWaiver) {
+	margin-top: 3em;
+}
+
 p:has(.viewWaiver:checked) + .hideWhenNotChecked {
 	display: block !important;
 }
