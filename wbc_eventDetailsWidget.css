@@ -624,3 +624,7 @@ div:has(> div > div > .mppw-form-field__control:disabled){
 p:has(.viewWaiver:checked) + .hideWhenNotChecked {
 	display: block !important;
 }
+
+.mpp-innerpage--name-has-email, #mapAddress > strong > a {
+	text-decoration: none;
+}
