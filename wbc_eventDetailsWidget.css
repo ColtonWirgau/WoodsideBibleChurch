@@ -22,9 +22,29 @@
 
 
 /* PRODUCT HANDLING */
-/* This is for hiding the option price row */
-.product-form__control tr:nth-child(1) {
-	display: none;
+.mppw-product-options > tbody > tr:first-child > th {
+    visibility: hidden;
+    position: relative;
+}
+
+.mppw-product-options > tbody > tr:first-child > th:after {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mppw-product-options > tbody > tr:first-child > th:nth-child(1):after {
+    content: "Item";
+}
+
+.mppw-product-options > tbody > tr:first-child > th:nth-child(2):after {
+	 content: "Quantity";
+}
+
+.mppw-product-options > tbody > tr:first-child > th:nth-child(3):after {
+    right: 0;
+	  content: "Price";
 }
 
 /* This is for hiding the option price line below the option */
