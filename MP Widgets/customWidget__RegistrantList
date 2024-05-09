@@ -1,0 +1,76 @@
+<body>
+    <main class="main-wrap page-template">
+        <div class="">
+            {% for event in DataSet1 %}
+                <section class="headline-wrap">
+                    <h1 class="headline centered no-m">
+                        {{event.Event_Title}}
+                    </h1>
+                </section>
+                <section class="ws-section eventDetailsContainer">
+                    <div class="eventImage" style="background-image: url('{{event.Image}}');"></div>
+                    <div class="inner-wrap">
+                        <h3 class="centered">
+                            Event Details
+                        </h3>
+                        {% if event.Location_Name %}
+                        <div class="locationContainer">
+                            <div class="locationName">{{event.Location_Name}}</div>
+                            <div class="locationAddress">{{event.Location_Address}}</div>   
+                        </div>
+                        {% endif %}
+                        {% if event.Event_Start_Date %}
+                        <div class="dateContainer">
+                            {{event.Event_Start_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)' }} {% if event.Event_End_Date %} - {{event.Event_End_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)'}} {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if event.User_Registration_Status %}
+                        <div class="registrationDetailsContainter">
+                            <div>{{event.User_Registration_Status}}</div>
+                            <div>{{event.User_Registration_Product_Option}}</div>
+                            <div>{{event.User_Registration_Amount_Paid}} paid on {{event.User_Registration_Payment_Date | in_time_zone: "America/Detroit" | date: '%B %e, %Y at %-I:%M %P'}}</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </section>
+                {% if DataSet1.0.User_Rooming_Assignment %}
+                <section class="ws-section">
+                    <h3>{{DataSet1.0.User_Rooming_Assignment}}</h3>
+                    {% if DataSet3.0.Name %}
+                    <div class="roommateContainer">
+                        {% for roommate in DataSet3 %}
+                        <div class="roommate">
+                            {{roommate.Name}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </section>
+                {% endif %}
+                {% if DataSet2.0.First_Name %}
+                <section class="ws-section">
+                    <h3>Who's Coming?</h3>
+                    <div class="peopleContainer">
+                    {% for person in DataSet2 limit:20 %}
+                        <div class="person">{{person.First_Name}} {{person.Last_Intitial}}</div>
+                    {% endfor %}
+                    {% if DataSet2.20.First_Name %}
+                        {% for person in DataSet2 offset:20 %}
+                            <div class="person initiallyHidden">{{person.First_Name}} {{person.Last_Intitial}}</div>
+                        {% endfor %}
+                        <div style="position: relative;">
+                            <input type="checkbox" id="toggleExtraPeople" name="toggleExtraPeople" value="toggleExtraPeople">
+                            <label>View All</label>
+                        </div>
+                    {% endif %}
+                    </div>
+                </section>
+                {% endif %}
+                <section class="ws-section btnContainer">
+                    <a href="https://woodsidebible.org/events/details/?id={{event.Event_ID}}" class="btn primary">View Event</a>
+                    <a href="mailto:{{event.Contact_Email}}" class="btn border">Contact</a>
+                </section>
+            {% endfor %}
+        </div>
+    </main>
+</body>
