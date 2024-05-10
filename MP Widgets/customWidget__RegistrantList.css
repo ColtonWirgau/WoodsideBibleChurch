@@ -130,6 +130,7 @@ h3 {
     justify-content: center;
     align-items: center;
     border-image: linear-gradient(to right,transparent,#62bb46, transparent) 1 0 0 0;
+    color: #62bb46;
 }
 
 #toggleExtraPeople:checked + div > #viewAll  {
