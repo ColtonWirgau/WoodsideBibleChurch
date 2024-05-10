@@ -33,20 +33,6 @@
                         {% endif %}
                     </div>
                 </section>
-                {% if DataSet1.0.User_Rooming_Assignment %}
-                <section>
-                    <h3>{{DataSet1.0.User_Rooming_Assignment}}</h3>
-                    {% if DataSet3.0.Name %}
-                    <div class="roommateContainer">
-                        {% for roommate in DataSet3 %}
-                        <div class="roommate">
-                            {{roommate.Name}}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </section>
-                {% endif %}
                 {% if DataSet2.0.First_Name %}
                 <section class="whosComing">
                     <h3>Who's Coming?</h3>
