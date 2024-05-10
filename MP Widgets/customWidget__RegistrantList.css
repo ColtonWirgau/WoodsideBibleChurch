@@ -71,6 +71,11 @@ h3 {
 }
 
 
+.whosComing {
+    margin: auto;
+    max-width: 900px;
+}
+
 
 .peopleContainer {
     display: flex;
