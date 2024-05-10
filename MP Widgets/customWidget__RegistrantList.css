@@ -205,4 +205,12 @@ h3 {
     .headline-wrap {
       margin-bottom: 2.5em;
     }
+
+    #MyCustomWidget {
+        margin-top: -6em;
+    }
+    
+    .eventDetailsContainer {
+        gap: 2em;
+    }
 }
