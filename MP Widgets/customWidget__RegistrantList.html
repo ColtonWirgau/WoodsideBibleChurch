@@ -24,7 +24,7 @@
                             {{event.Event_Start_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)' }} {% if event.Event_End_Date %} - {{event.Event_End_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)'}} {% endif %}
                         </div>
                         {% endif %}
-                        {% if event.User_Registration_Status %}
+                        {% if event.User_Registration_Product_Option %}
                         <div class="registrationDetailsContainter">
                             <div>{{event.User_Registration_Product_Option}}</div>
                             {% if DataSet1.0.User_Rooming_Assignment %}<div>{{DataSet1.0.User_Rooming_Assignment}}{% if DataSet3.0.Name %}: {% for roommate in DataSet3 %} {{roommate.Name}} {% endfor %}{% endif %}</div>{% endif %}
