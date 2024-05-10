@@ -51,18 +51,13 @@
                 <section>
                     <h3>Who's Coming?</h3>
                     <div class="peopleContainer">
-                    {% for person in DataSet2 limit:20 %}
+                    {% for person in DataSet2 %}
                         <div class="person">{{person.First_Name}} {{person.Last_Intitial}}</div>
                     {% endfor %}
-                    {% if DataSet2.20.First_Name %}
-                        {% for person in DataSet2 offset:20 %}
-                            <div class="person initiallyHidden">{{person.First_Name}} {{person.Last_Intitial}}</div>
-                        {% endfor %}
                         <div style="position: relative;">
                             <input type="checkbox" id="toggleExtraPeople" name="toggleExtraPeople" value="toggleExtraPeople">
                             <label>View All</label>
                         </div>
-                    {% endif %}
                     </div>
                 </section>
                 {% endif %}
