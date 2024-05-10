@@ -26,7 +26,8 @@
                         {% endif %}
                         {% if event.User_Registration_Product_Option %}
                         <div class="registrationDetailsContainter">
-                            <div>{{event.User_Registration_Product_Option}}</div>
+                            <b>My Registration Details</b>
+                            {% if event.User_Registration_Product_Option %}<div>{{event.User_Registration_Product_Option}}</div>{% endif %}
                             {% if DataSet1.0.User_Rooming_Assignment %}<div>{{DataSet1.0.User_Rooming_Assignment}}{% if DataSet3.0.Name %}: {% for roommate in DataSet3 %} {{roommate.Name}} {% endfor %}{% endif %}</div>{% endif %}
                             <div>{{event.User_Registration_Amount_Paid}} paid on {{event.User_Registration_Payment_Date | in_time_zone: "America/Detroit" | date: '%B %e, %Y at %-I:%M %P'}}</div>
                         </div>
