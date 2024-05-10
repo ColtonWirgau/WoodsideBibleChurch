@@ -109,13 +109,21 @@ h3 {
     cursor: pointer;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 20px;
+    width: 100%;
+    height: 40px;
 }
 
 
 #viewLess {
     display: none;
+}
+
+#toggleExtraPeople + div {
+    background-color: #62bb46;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #toggleExtraPeople:checked + div > #viewAll  {
@@ -127,7 +135,8 @@ h3 {
 }
 
 #toggleExtraPeople + div > label {
-    color: #62bb46;
+    margin: 0;
+    color: white;
 }
 
 .btnContainer {
