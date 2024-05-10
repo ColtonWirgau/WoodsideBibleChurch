@@ -59,6 +59,10 @@ h3 {
     font-size: 1.25em;
 }
 
+.eventDetails h3 {
+    text-align: unset;
+}
+
 .eventImage {
     background-repeat: no-repeat;
     background-size: contain;
@@ -192,6 +196,10 @@ h3 {
     
     .btnContainer {
         gap: 5%;
+    }
+
+    .eventDetails h3 {
+        text-align: center;
     }
 }
   
