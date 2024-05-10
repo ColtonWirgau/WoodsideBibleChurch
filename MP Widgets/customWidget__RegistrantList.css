@@ -103,13 +103,6 @@ h3 {
     background-image: unset;
 }
 
-
-
-
-.initiallyHidden {
-    display: none;
-}
-
 #toggleExtraPeople {
     position: absolute;
     opacity: 0;
@@ -121,11 +114,19 @@ h3 {
 }
 
 
-#toggleExtraPeople:checked, #toggleExtraPeople:checked + label  {
-    /*! display: none; */
+#viewLess {
+    display: none;
 }
 
-#toggleExtraPeople + label {
+#toggleExtraPeople:checked + div > #viewAll  {
+    display: none;
+}
+
+#toggleExtraPeople:checked + div > #viewLess  {
+    display: block;
+}
+
+#toggleExtraPeople + div > label {
     color: #62bb46;
 }
 
