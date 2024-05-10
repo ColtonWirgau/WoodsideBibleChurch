@@ -34,7 +34,7 @@
     gap: 10px;
 }
 
-.eventDetails, .eventDetails h3, .eventDetails > * {
+.eventDetails, .eventDetails h6, .eventDetails > * {
     margin: 0;
 }
 
@@ -59,7 +59,7 @@ h3 {
     font-size: 1.25em;
 }
 
-.eventDetails h3 {
+.eventDetails h6 {
     text-align: unset;
 }
 
