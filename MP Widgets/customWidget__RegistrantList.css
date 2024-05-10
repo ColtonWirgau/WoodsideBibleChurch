@@ -28,10 +28,18 @@
     flex: 1;
     min-height: 250px;
     max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.eventDetails, .eventDetails h3 {
+.eventDetails, .eventDetails h3, .eventDetails > * {
     margin: 0;
+}
+
+.eventDetails > * > * {
+    margin-top: 0.75em;
 }
 
 h1 {
