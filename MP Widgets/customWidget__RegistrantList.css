@@ -124,7 +124,7 @@ h3 {
 }
 
 #toggleExtraPeople + div {
-    background-color: #efeff0;
+    border-top: 1px solid #979797;
     height: 30px;
     display: flex;
     justify-content: center;
