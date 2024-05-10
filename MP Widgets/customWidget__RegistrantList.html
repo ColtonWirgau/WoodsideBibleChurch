@@ -7,7 +7,7 @@
                         {{event.Event_Title}}
                     </h1>
                 </section>
-                <section class="ws-section eventDetailsContainer">
+                <section class="eventDetailsContainer">
                     <div class="eventImage" style="background-image: url('{{event.Image}}');"></div>
                     <div class="inner-wrap">
                         <h3 class="centered">
@@ -34,7 +34,7 @@
                     </div>
                 </section>
                 {% if DataSet1.0.User_Rooming_Assignment %}
-                <section class="ws-section">
+                <section>
                     <h3>{{DataSet1.0.User_Rooming_Assignment}}</h3>
                     {% if DataSet3.0.Name %}
                     <div class="roommateContainer">
@@ -48,7 +48,7 @@
                 </section>
                 {% endif %}
                 {% if DataSet2.0.First_Name %}
-                <section class="ws-section">
+                <section>
                     <h3>Who's Coming?</h3>
                     <div class="peopleContainer">
                     {% for person in DataSet2 limit:20 %}
@@ -66,7 +66,7 @@
                     </div>
                 </section>
                 {% endif %}
-                <section class="ws-section btnContainer">
+                <section class="btnContainer">
                     <a href="https://woodsidebible.org/events/details/?id={{event.Event_ID}}" class="btn primary">View Event</a>
                     <a href="mailto:{{event.Contact_Email}}" class="btn border">Contact</a>
                 </section>
