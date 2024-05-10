@@ -173,7 +173,7 @@ h3 {
     .eventDetailsContainer {
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .eventImage {
@@ -186,7 +186,6 @@ h3 {
     .eventDetailsContainer > .inner-wrap {
         gap: 15px;
         min-height: 0px;
-        max-width: 900px;
         width: 100%;
     }
     
