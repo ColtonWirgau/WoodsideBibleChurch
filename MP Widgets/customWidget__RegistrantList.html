@@ -10,20 +10,22 @@
                 <section class="eventDetailsContainer">
                     <div class="eventImage" style="background-image: url('{{event.Image}}');"></div>
                     <div class="eventDetails">
-                        <h6 class="centered">
-                            Event Details
-                        </h6>
-                        {% if event.Location_Name %}
-                        <div class="locationContainer">
-                            <div class="locationName">{{event.Location_Name}}</div>
-                            <div class="locationAddress">{{event.Location_Address}}</div>   
+                        <div>
+                            <h6 class="centered">
+                                Event Details
+                            </h6>
+                            {% if event.Location_Name %}
+                            <div class="locationContainer">
+                                <div class="locationName">{{event.Location_Name}}</div>
+                                <div class="locationAddress">{{event.Location_Address}}</div>   
+                            </div>
+                            {% endif %}
+                            {% if event.Event_Start_Date %}
+                            <div class="dateContainer">
+                                {{event.Event_Start_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)' }} {% if event.Event_End_Date %} - {{event.Event_End_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)'}} {% endif %}
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
-                        {% if event.Event_Start_Date %}
-                        <div class="dateContainer">
-                            {{event.Event_Start_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)' }} {% if event.Event_End_Date %} - {{event.Event_End_Date | in_time_zone: 'America/Detroit' | date: '%B %e, %Y  (%-I:%M %P)'}} {% endif %}
-                        </div>
-                        {% endif %}
                         {% if event.User_Registration_Product_Option %}
                         <div class="registrationDetailsContainter">
                             <h6>My Registration Details</h6>
