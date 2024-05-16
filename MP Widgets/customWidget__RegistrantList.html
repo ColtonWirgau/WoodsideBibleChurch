@@ -31,7 +31,7 @@
                             <h6>My Registration Details</h6>
                             {% if DataSet1.0.User_Registration_Product_Option %}<div>{{DataSet1.0.User_Registration_Product_Option}}</div>{% endif %}
                             {% if DataSet1.0.User_Rooming_Assignment %}<div>{{DataSet1.0.User_Rooming_Assignment}}{% if DataSet3.0.Name %}: {% for roommate in DataSet3 %} {{roommate.Name}} {% endfor %}{% endif %}</div>{% endif %}
-                            {% DataSet1.0.User_Registration_Amount_Paid %}<div>{{DataSet1.0.User_Registration_Amount_Paid}} paid on {{DataSet1.0.User_Registration_Payment_Date | date: '%B %e, %Y'}}</div>{% endif %}
+                            {% if DataSet1.0.User_Registration_Amount_Paid %}<div>{{DataSet1.0.User_Registration_Amount_Paid}} paid on {{DataSet1.0.User_Registration_Payment_Date | date: '%B %e, %Y'}}</div>{% endif %}
                         </div>
                         {% endif %}
                     </div>
