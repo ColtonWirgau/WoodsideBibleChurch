@@ -44,6 +44,7 @@
                         <div class="person">{{person.First_Name}} {{person.Last_Intitial}}</div>
                     {% endfor %}
                     </div>
+                    {% if DataSet2.25.First_Name %}
                     <div style="position: relative;">
                         <input type="checkbox" id="toggleExtraPeople" name="toggleExtraPeople" value="toggleExtraPeople">
                         <div>
@@ -51,6 +52,7 @@
                             <label id="viewLess">View Less</label>
                         </div>
                     </div>
+                    {% endif %}
                 </section>
                 {% endif %}
                 <section class="btnContainer">
