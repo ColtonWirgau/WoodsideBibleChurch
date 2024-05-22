@@ -1,12 +1,4 @@
-function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-}
+import jwt_decode from 'jwt-decode';
 
 
 const cookies = document.cookie;
@@ -24,9 +16,9 @@ while (i < cookie.length) {
         locationToken = cookie[i].split('tbx-ws__selected-location=')[1];
         //console.log(locationToken);
 
-        selectedCongregationID = parseJwt(locationToken);
-
-        console.log(selectedCongregationID);
+        var decoded = jwt_decode(locationToken);
+        
+        console.log(decoded);
         
         selectedCongregationID = 1234;
         
