@@ -7,8 +7,10 @@ console.log(test);
 let i = 0;
 
 while (i < test.length) {
-    console.log("Cookie " + i + ": ")
-    console.log(test[i]);
+    if (test[i].startsWith('tbx-ws__selected-location=')) {
+        console.log("Cookie " + i + ": ")
+        console.log(test[i]);
+    }
     i++;
 }
 
