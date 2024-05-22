@@ -5,7 +5,7 @@ const MyCustomWidget = document.getElementById("MyCustomWidget");
 var params = MyCustomWidget.getAttribute("data-params");
 
 if (tok !== null) {
-  params = params + "&@UserToken=" + tok;
+  params = params + "&@UserToken='" + tok + "'";
 } 
 
 
