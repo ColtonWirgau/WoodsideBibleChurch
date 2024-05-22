@@ -1,4 +1,10 @@
-const locationToken = document.cookie //localStorage.getItem("tbx-ws__selected-location");	 
+const cookies = document.cookie
+var test = cookies.split(';')
+
+console.log("Cookies: ");
+console.log(test);
+
+var locationToken = document.cookie //localStorage.getItem("tbx-ws__selected-location");	 
 
 const MyCustomWidget = document.getElementById("MyCustomWidget");
 var params = MyCustomWidget.getAttribute("data-params");
