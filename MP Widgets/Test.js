@@ -1,4 +1,4 @@
-import jwt_decode from 'jwt-decode';
+//import jwt_decode from 'jwt-decode';
 
 
 const cookies = document.cookie;
@@ -16,9 +16,9 @@ while (i < cookie.length) {
         locationToken = cookie[i].split('tbx-ws__selected-location=')[1];
         //console.log(locationToken);
 
-        var decoded = jwt_decode(locationToken);
+        //var decoded = jwt_decode(locationToken);
         
-        console.log(decoded);
+        //console.log(decoded);
         
         selectedCongregationID = 1234;
         
