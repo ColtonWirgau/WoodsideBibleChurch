@@ -20,9 +20,9 @@ while (i < cookie.length) {
         
         //console.log(decoded);
         
-        selectedCongregationID = 1234;
+        //selectedCongregationID = 1234;
         
-        params = params + "&@CongregationID=" + selectedCongregationID;
+        //params = params + "&@CongregationID=" + selectedCongregationID;
     }
     i++;
 } 
