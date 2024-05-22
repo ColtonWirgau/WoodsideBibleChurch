@@ -1,11 +1,10 @@
-const tok = localStorage.getItem("mpp-widgets_AuthToken");	 
-//document.getElementById("Token").innerHTML = tok;	
+const locationToken = document.cookie //localStorage.getItem("tbx-ws__selected-location");	 
 
 const MyCustomWidget = document.getElementById("MyCustomWidget");
 var params = MyCustomWidget.getAttribute("data-params");
 
-if (tok !== null) {
-  params = params + "&@UserToken='" + tok + "'";
+if (locationToken !== null) {
+  params = params + "&@CongregationID='" + locationToken + "'";
 } 
 
 
