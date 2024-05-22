@@ -9,7 +9,7 @@ let i = 0;
 while (i < test.length) {
     if (test[i].startsWith('tbx-ws__selected-location=')) {
         console.log("Cookie " + i + ": ")
-        console.log(test[i]);
+        console.log(test[i].split('tbx-ws__selected-location=')[1]);
     }
     i++;
 }
