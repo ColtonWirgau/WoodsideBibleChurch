@@ -1,5 +1,5 @@
 const cookies = document.cookie
-var test = cookies.split(';')
+var test = cookies.split('; ')
 
 console.log("Cookies: ");
 console.log(test);
