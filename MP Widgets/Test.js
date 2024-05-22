@@ -15,7 +15,7 @@ while (i < cookie.length) {
 
         selectedCongregationID = 1234;
         
-        params = params + "&@CongregationID='" + selectedCongregationID + "'";
+        params = params + "&@CongregationID=" + selectedCongregationID;
     }
     i++;
 } 
