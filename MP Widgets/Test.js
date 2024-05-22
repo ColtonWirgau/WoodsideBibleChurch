@@ -4,7 +4,10 @@ const tok = localStorage.getItem("mpp-widgets_AuthToken");
 const MyCustomWidget = document.getElementById("MyCustomWidget");
 var params = MyCustomWidget.getAttribute("data-params");
 
-params = params + "&@UserToken=" + tok;
+if (tok !== null) {
+  params = params + "&@UserToken=" + tok;
+} 
+
 
 MyCustomWidget.setAttribute("data-params", params);
 
