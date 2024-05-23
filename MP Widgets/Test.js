@@ -21,7 +21,7 @@ while (i < cookie.length) {
         console.log(arrayToken);
 
         
-        const tokenPayload = JSON.parse(atob(arrayToken[1]));
+        const tokenPayload = JSON.parse(atob(arrayToken[0]));
         
         console.log("Payload");
         console.log(tokenPayload);
