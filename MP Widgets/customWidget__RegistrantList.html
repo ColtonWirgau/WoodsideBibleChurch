@@ -6,9 +6,11 @@
                     <h1 class="headline centered no-m">
                         {{event.Event_Title}}
                     </h1>
+                    {% if DataSet4.0.Congregation_Name %}
                     <h1>
                         Selected Congregation: {{DataSet4.0.Congregation_Name}}
                     </h1>
+                    {% endif %}
                 </section>
                 <section class="eventDetailsContainer">
                     <div class="eventImage" style="background-image: url('{{event.Image}}');"></div>
