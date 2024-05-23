@@ -21,8 +21,9 @@ while (i < cookie.length) {
 
         const locationJSON = JSON.parse(tokenPayload);
 
-        console.log("JSON");
-        console.log(tokenPayload.location_id);
+        console.log("JSON");'
+        console.log(locationJSON);
+        //console.log(tokenPayload.location_id);
 
         
         //params = params + "&@CongregationID=" + selectedCongregationID;
