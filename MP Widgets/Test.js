@@ -32,6 +32,6 @@ while (i < cookie.length) {
 } 
 
 
-//MyCustomWidget.setAttribute("data-params", params);
+MyCustomWidget.setAttribute("data-params", params);
 
 document.getElementById("Attributes").innerHTML = params;	
