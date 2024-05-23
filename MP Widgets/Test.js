@@ -15,7 +15,9 @@ while (i < cookie.length) {
         console.log(locationToken);
 
         
-        const arrayToken = locationToken.split('.');
+        var arrayToken = locationToken.split('.');
+
+        arrayToken.replace("=", "");
 
         console.log("Array");
         console.log(arrayToken);
