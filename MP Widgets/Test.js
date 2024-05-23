@@ -14,16 +14,13 @@ while (i < cookie.length) {
         console.log("LocationToken");
         console.log(locationToken);
 
-        const cleanedToken = locationToken.replace("=", "");
-
-        
-        const arrayToken = cleanedToken.split('.');
+        const arrayToken = locationToken.split('.');
 
         console.log("Array");
         console.log(arrayToken);
 
         
-        const tokenPayload = JSON.parse(atob(arrayToken[0]));
+        const tokenPayload = null;
         
         console.log("Payload");
         console.log(tokenPayload);
