@@ -13,17 +13,17 @@ while (i < cookie.length) {
         locationToken = cookie[i].split('tbx-ws__selected-location=')[1];
         console.log("LocationToken");
         console.log(locationToken);
-
-        const arrayToken = locationToken.split('.');
-
-        console.log("Array");
-        console.log(arrayToken);
-
         
         const tokenPayload = atob(locationToken);
         
         console.log("Payload");
         console.log(tokenPayload);
+
+        const locationJSON = JSON.parse(tokenPayload);
+
+        console.log("JSON");
+        console.log(tokenPayload.location_id);
+
         
         //params = params + "&@CongregationID=" + selectedCongregationID;
     }
