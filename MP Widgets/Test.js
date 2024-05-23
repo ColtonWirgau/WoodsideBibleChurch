@@ -14,10 +14,10 @@ while (i < cookie.length) {
         console.log("LocationToken");
         console.log(locationToken);
 
-        
-        var arrayToken = locationToken.split('.');
+        const cleanedToken = locationToken.replace("=", "");
 
-        arrayToken.replace("=", "");
+        
+        const arrayToken = cleanedToken.split('.');
 
         console.log("Array");
         console.log(arrayToken);
