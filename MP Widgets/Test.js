@@ -20,7 +20,7 @@ while (i < cookie.length) {
         console.log(arrayToken);
 
         
-        const tokenPayload = null;
+        const tokenPayload = atob(locationToken);
         
         console.log("Payload");
         console.log(tokenPayload);
