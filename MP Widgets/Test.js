@@ -24,8 +24,9 @@ while (i < cookie.length) {
         console.log("Location ID");
         console.log(locationJSON.location_id);
 
-        
-        //params = params + "&@CongregationID=" + selectedCongregationID;
+        if(locationJSON.location_id !== null) {
+            params = params + "&@SelectedCongregationID=" + locationJSON.location_id;
+        }
     }
     i++;
 } 
