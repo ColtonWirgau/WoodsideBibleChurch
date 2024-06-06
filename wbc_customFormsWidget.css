@@ -40,6 +40,10 @@
 }
 
 
+#formFields > div:has(> div > .mppw-form-field-alt[style="display: none;"]){
+	display: none;
+}
+
 .mppw-form-field-alt:not(:has(.multiselectTextbox)) > label + input[type="text"], input[type="date"] {
 	border: 1px solid var(--form-field-border) !important;;
 }
