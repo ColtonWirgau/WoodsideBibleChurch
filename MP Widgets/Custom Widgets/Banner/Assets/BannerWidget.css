@@ -3,6 +3,7 @@
 
     * {
         font-family: Montserrat,Helvetica,Arial,sans-serif;
+        color: white !important;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -10,7 +11,9 @@
     }
 
     h4 {
-        font-size: calc(1.275rem + .3vw);
+        font-size: calc(1.3rem + .3vw);
+        font-weight: 700 !important;
+        
     }
 
     .banner {
@@ -32,6 +35,14 @@
         -o-transition: outline-offset 0.25s ease-out, outline-width 0.25s ease-out, outline-color 0.25s ease-out, filter 0.25s ease-out;
         transition: outline-offset 0.25s ease-out, outline-width 0.25s ease-out, outline-color 0.25s ease-out, filter 0.25s ease-out;
 
+        * {
+            margin: 0;
+        }
+        
+        span > p {
+            font-size: 1.2rem;
+        }
+        
         h4 {
             font-weight: 600;
         }
@@ -44,12 +55,14 @@
                 color: #FFFFFF;
                 border-radius: 0;
                 text-transform: uppercase;
-                font-weight: 600;
+                font-weight: 700;
+                font-size: 1.05rem;
                 padding: 0.5em 2em;
                 background-color: #1C2B39;
                 background: linear-gradient(225deg, rgb(28, 43, 57) 0%, rgb(57, 115, 170) 100%);
                 position: relative;
                 border: none;
+                min-width: auto;
             }
         }
     }
