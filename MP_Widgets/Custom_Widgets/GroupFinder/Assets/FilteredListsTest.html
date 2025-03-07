@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown with Keyboard Navigation</title>
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 200px;
+        margin-bottom: 20px; /* Spacing between dropdowns */
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        width: 100%;
+        max-height: 150px;
+        overflow-y: auto;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .dropdown-content.show {
+        display: block;
+      }
+
+      .dropdown-content div {
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      .dropdown-content div:hover,
+      .dropdown-content div.active {
+        background-color: #f1f1f1;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dropdown 1 -->
+    <div class="dropdown">
+      <input
+        type="text"
+        class="searchInput"
+        id="dropdown1Input"
+        placeholder="Click to see options"
+      />
+      <div class="dropdown-content" id="dropdown1List">
+        <div>Apple</div>
+        <div>Banana</div>
+        <div>Cherry</div>
+        <div>Date</div>
+      </div>
+    </div>
+
+    <!-- Dropdown 2 -->
+    <div class="dropdown">
+      <input
+        type="text"
+        class="searchInput"
+        id="dropdown2Input"
+        placeholder="Click to see options"
+      />
+      <div class="dropdown-content" id="dropdown2List">
+        <div>Carrot</div>
+        <div>Broccoli</div>
+        <div>Spinach</div>
+        <div>Tomato</div>
+      </div>
+    </div>
+
+    <script>
+      // Function to initialize a dropdown
+      function setupDropdown(inputId, dropdownId) {
+        const input = document.getElementById(inputId);
+        const dropdown = document.getElementById(dropdownId);
+        const options = Array.from(dropdown.querySelectorAll("div")); // Convert to array
+        let selectedIndex = -1; // Track currently highlighted item
+
+        // Show dropdown when input is clicked
+        input.addEventListener("focus", () => {
+          dropdown.classList.add("show");
+          filterOptions(input, options, ""); // Show all options on focus
+          selectedIndex = -1; // Reset selection
+        });
+
+        // Filter options as user types
+        input.addEventListener("input", () => {
+          filterOptions(input, options, input.value);
+          dropdown.classList.add("show"); // Ensure dropdown remains visible
+          selectedIndex = -1; // Reset selection
+        });
+
+        // Handle option selection via click
+        options.forEach((option, index) => {
+          option.addEventListener("click", () => {
+            input.value = option.textContent;
+            dropdown.classList.remove("show"); // Hide dropdown after selection
+          });
+        });
+
+        // Keyboard navigation
+        input.addEventListener("keydown", (event) => {
+          const visibleOptions = options.filter(
+            (opt) => !opt.classList.contains("hidden")
+          ); // Filter visible options
+
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            if (visibleOptions.length > 0) {
+              selectedIndex = (selectedIndex + 1) % visibleOptions.length; // Move down
+              updateHighlight(visibleOptions, selectedIndex);
+            }
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            if (visibleOptions.length > 0) {
+              selectedIndex =
+                (selectedIndex - 1 + visibleOptions.length) %
+                visibleOptions.length; // Move up
+              updateHighlight(visibleOptions, selectedIndex);
+            }
+          } else if (event.key === "Enter" || event.key === "Tab") {
+            if (selectedIndex >= 0 && selectedIndex < visibleOptions.length) {
+              event.preventDefault(); // Prevent default Enter/Tab behavior
+              input.value = visibleOptions[selectedIndex].textContent; // Select the highlighted item
+              dropdown.classList.remove("show"); // Hide dropdown
+            }
+          }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener("click", (event) => {
+          if (
+            !input.contains(event.target) &&
+            !dropdown.contains(event.target)
+          ) {
+            dropdown.classList.remove("show");
+          }
+        });
+
+        // Function to update which option is highlighted
+        function updateHighlight(options, index) {
+          options.forEach((opt, i) => {
+            opt.classList.toggle("active", i === index);
+          });
+        }
+      }
+
+      // Function to filter options in the dropdown
+      function filterOptions(input, options, searchText) {
+        options.forEach((option) => {
+          const text = option.textContent.toLowerCase();
+          if (text.includes(searchText.toLowerCase())) {
+            option.classList.remove("hidden");
+          } else {
+            option.classList.add("hidden");
+          }
+        });
+      }
+
+      // Initialize each dropdown independently
+      setupDropdown("dropdown1Input", "dropdown1List");
+      setupDropdown("dropdown2Input", "dropdown2List");
+    </script>
+  </body>
+</html>

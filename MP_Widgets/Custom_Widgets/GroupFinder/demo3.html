@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Group Finder</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">         
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="Assets/CustomGroups.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    
+    <script type="text/javascript" src="https://mpweb.azureedge.net/cdn/customWidget.js"></script>
+    
+    <body>
+        <div class="container">
+            <div id="groupTag"></div>
+        </div>  
+    
+
+        <script type="text/javascript">
+            var tag = `
+            <div class="container">
+                    <div id="CustomGroupFinderWidget" 
+                        data-component="CustomWidget"
+                        data-sp="api_custom_GroupFinderWidget" 
+                        data-params="{params}"
+                        data-template="/Widgets/GroupFinder/Template/GroupFinder.html" 
+                        data-requireUser="false" 
+                        data-cache="false" 
+                        data-host="woodsidebible" 
+                        data-debug="true">
+                    </div>  
+                </div>`;
+
+            
+            document.cookie = "tbx-ws__selected-location=eyJ1c2VyX2lkIjoyMDEsImxvY2F0aW9uX2lkIjo5LCJsb2NhdGlvbl9uYW1lIjoiTGFrZSBPcmlvbiIsImxvY2F0aW9uX3Nob3J0X25hbWUiOiJMTyIsImxvY2F0aW9uX3VybCI6Imh0dHBzOi8vd29vZHNpZGViaWJsZS5vcmcvbG9jYXRpb25zL2xha2Utb3Jpb24ifQ";
+            // Delete later, we'll get this from the website cookie that already exists.
+
+            test();
+            
+            function test() {
+                function decodeJwtFromCookie(cookieName) {
+                    function getCookieValue(name) {
+                        const cookies = document.cookie.split('; ');
+                        for (let cookie of cookies) {
+                            const [key, ...valueParts] = cookie.split('=');
+                            if (key.trim() === name) {
+                                return decodeURIComponent(valueParts.join('='));
+                            }
+                        }
+                        return null;
+                    }
+
+                    function base64UrlDecode(str) {
+                        try {
+                            return JSON.parse(atob(str.replace(/-/g, '+').replace(/_/g, '/')));
+                        } catch (e) {
+                            console.error("Invalid JWT format", e);
+                            return null;
+                        }
+                    }
+
+                    const token = getCookieValue(cookieName);
+                    
+                    if (!token) {
+                        console.error("JWT not found in cookies");
+                        return null;
+                    }
+                    
+                    return base64UrlDecode(token); // Decode payload
+                }
+
+                function getFilteredSessionVariables(allowedKeys) {
+                    console.log(allowedKeys);
+                    let filteredVariables = [];
+                    
+                    allowedKeys.forEach(key => {
+                        let value = sessionStorage.getItem(key);
+                        if (value !== null) {
+                            let parameterObject = { 'key': key, 'value': value };
+                            filteredVariables.push(parameterObject);
+                        }
+                    });
+                    
+                    return filteredVariables;
+                }
+
+                function clearExistingSessionStorageParams(allowedKeys) {
+                    allowedKeys.forEach(
+                        key => sessionStorage.removeItem(key));
+                }
+
+                const allowedKeys = ["@CongregationID", "@DaysOfWeek", "@Cities", "@Leaders", "@GroupIDs", "@Search", "@DomainID"];
+
+                // Clear out any existing session storage
+                // DO I NEED THIS HERE OR SOMEWHERE ELSE??
+                // This fixes things for if you had url params but took them off
+                clearExistingSessionStorageParams(allowedKeys);
+
+                // Get the Congregation_ID and set it in session storage
+                const cookieName = "tbx-ws__selected-location";
+                let CongregationID = (decodeJwtFromCookie(cookieName).location_id);
+                sessionStorage.setItem('@CongregationID', CongregationID);
+                //sessionStorage.setItem('@DaysOfWeek', "Monday, Wednesday");
+                //sessionStorage.setItem('@Leaders', 'Matt');
+
+                var sessionData = '';
+                var groupTag = document.getElementById("groupTag");
+                
+                
+                filters = getFilteredSessionVariables(allowedKeys);
+
+                // Function to get URL parameters and append to filters array
+                function getQueryParams() {
+                    let urlParams = new URLSearchParams(window.location.search);
+
+                    urlParams.forEach((value, key) => {
+                        filters.push({ key: key, value: value });
+                    });
+                }
+
+                // Get additional parameters from URL
+                getQueryParams();
+
+
+                // Group filters by key
+                let groupedFilters = filters.reduce((acc, filter) => {
+                    if (!acc[filter.key]) {
+                        acc[filter.key] = [];
+                    }
+                    acc[filter.key].push(filter.value);
+                    return acc;
+                }, {});
+                
+
+                // Convert grouped filters into query string format
+                let params = Object.entries(groupedFilters)
+                    .map(([key, values]) => `${key}=${values.join(", ")}`)
+                    .join("&");
+
+
+                //If there is multiple CongregationID's, take the last one
+                function getLastCongregationID(queryString) {
+                    return queryString.replace(/@CongregationID=([^&]+)/, (match, values) => {
+                        let valueArray = values.split(", ").map(val => val.trim());
+                        return `@CongregationID=${valueArray[valueArray.length - 1]}`;
+                    });
+                }
+
+                let updatedQuery = getLastCongregationID(params);
+
+                params = updatedQuery;
+                
+                // Clear existing keys from session storag
+                clearExistingSessionStorageParams(allowedKeys);       
+                
+                // Parse and add new parameters to session storage
+                updatedQuery.split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                if (allowedKeys.includes(key)) {
+                    sessionStorage.setItem(key, decodeURIComponent(value));
+                }
+                });
+
+                // Replace the placeholder in the tag with the formatted parameters
+                groupTag.innerHTML = tag.replace('{params}', `@DomainID=1&${params}`);
+            }
+            
+            
+            function executeSearch() {
+                //unbind Event Listeners
+                unbindListeners();
+
+                var tempParams = '';
+                sessionData = '';
+
+                test();
+
+                tempParams = `@DomainID=1&@CongregationID=10`;
+                groupTag.innerHTML = tag.replace('{params}', tempParams);
+                //window.ReinitAllWidgets();
+                
+                window.ReinitWidget('CustomGroupFinderWidget');
+            }
+
+            
+            function unbindListeners() {            
+                var triggerElements = document.querySelectorAll('.filterBtn');
+                
+                // Remove Change Events to all Group-Select Class Elements
+                for (var i = 0; i < triggerElements.length; i++) {
+                    triggerElements[i].removeEventListener('click', function() {
+                        tagClickEvent();
+                    });
+                };
+            }
+            
+            window.addEventListener('widgetLoaded', function(event) {
+                console.log('|||===> widgetLoaded Event Fired for: ' + event.detail);  
+                
+                if (event.detail == 'CustomGroupFinderWidget')
+                {
+                    //Process Post Widget Loaded Events
+                    // Use Session Values Post Re-Render
+                    var sessionVars = sessionData.split('&');
+
+                    // Add Change Events to all Group-Select Class Elements
+                    for (var i = 0; i < sessionVars.length; i++) {
+                        if (sessionVars[i].indexOf('=') > -1)
+                        {
+                            var elementParams = sessionVars[i].split('=');
+
+                            var elementToUpdate = document.getElementById(elementParams[0].trim());
+                            elementToUpdate.value = elementParams[1].trim();
+                        }
+                    };
+
+                    // Get Tag Click Elements
+                    var tagElements = document.querySelectorAll('.filterBtn');
+
+
+                    console.log(tagElements);
+
+                    // Add Click Events for all Tags
+                    for (var i = 0; i < tagElements.length; i++) {
+                        tagElements[i].addEventListener('click', tagClickEvent);
+                    };
+                }
+
+                function tagClickEvent() {
+                    let key = this.getAttribute('data-filter');
+                    let value = this.getAttribute('data-id');
+                    let action = this.getAttribute('data-action');
+
+                    if (action == 'add') {
+                        // Store data
+                        sessionStorage.setItem(key, value);
+                        executeSearch();
+                    } 
+                    else if (action == 'remove') {
+                        // Remove data
+                        sessionStorage.removeItem(key);
+                        executeSearch();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

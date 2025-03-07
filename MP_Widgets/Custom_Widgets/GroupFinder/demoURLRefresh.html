@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Group Finder</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="Assets/CustomGroups.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+
+    <script
+      type="text/javascript"
+      src="https://mpweb.azureedge.net/cdn/customWidget.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="groupFinderContainer" class="container">
+      <div id="loader" class="loader-container">
+        <div class="loader-bg"></div>
+        <div class="loader"></div>
+      </div>
+      <div id="groupTag"></div>
+    </div>
+
+    <script type="text/javascript">
+      var tag = `
+            <div class="container">
+                    <div id="CustomGroupFinderWidget" 
+                        data-component="CustomWidget"
+                        data-sp="api_custom_GroupFinderWidget" 
+                        data-params="{params}"
+                        data-template="/Widgets/GroupFinder/Template/GroupFinder.html" 
+                        data-requireUser="false" 
+                        data-cache="false" 
+                        data-host="woodsidebible" 
+                        data-debug="true">
+                    </div>  
+                </div>`;
+
+      var groupTag = document.getElementById("groupTag");
+
+      const allowedKeys = [
+        "@CongregationID",
+        "@DaysOfWeek",
+        "@Cities",
+        "@Leaders",
+        "@GroupIDs",
+        "@Search",
+        "@Tags",
+      ];
+
+      // Change the group tag to what is in the url parameters
+      groupTag.innerHTML = tag.replace("{params}", getUrlParams());
+
+      function getUrlParams(url = window.location.href) {
+        const params = new URLSearchParams(new URL(url).search);
+        return Array.from(params.entries())
+          .map(([key, value]) => `${key}=${value}`)
+          .join("&");
+      }
+
+      function executeSearch(urlParams, key, value, action) {
+        // Show loader
+        document.getElementById("loader").classList.remove("hidden");
+
+        // Unbind Event Listeners
+        unbindListeners();
+
+        // Add/Remove whatever necessary filters in the URL Parameters (make sure all parameters are in the allowedKeys array,  if not remove)
+        const newParams = editUrlParams(urlParams, key, value, action);
+
+        // Reload the page with the updated parameters
+        const newUrl = new URL(window.location.href);
+        newUrl.search = newParams; // Replace the query string
+
+        window.location.replace(newUrl.href); // Replace the current URL and reload the page
+      }
+
+      function unbindListeners() {
+        var triggerElements = document.querySelectorAll(".filterBtn");
+
+        // Remove Change Events to all Group-Select Class Elements
+        for (var i = 0; i < triggerElements.length; i++) {
+          triggerElements[i].removeEventListener("click", function () {
+            tagClickEvent();
+          });
+        }
+      }
+
+      /*
+      function editUrlParams(urlParams, key, value, action) {
+        const params = new URLSearchParams(urlParams);
+
+        if (key === "@CongregationID") {
+          // Ensure value is an integer and not a list or invalid type
+          if (!Number.isInteger(Number(value)) || Array.isArray(value)) {
+            throw new Error("@CongregationID must be a single integer value.");
+          }
+          params.set(key, value);
+          return decodeURIComponent(params.toString());
+        }
+
+        if (!params.has(key)) {
+          if (action === "add") {
+            params.set(key, value);
+          }
+          return decodeURIComponent(params.toString());
+        }
+
+        let values = params.get(key).split(", ");
+
+        if (action === "remove") {
+          values = values.filter((v) => v !== value);
+          if (values.length > 0) {
+            params.set(key, values.join(", "));
+          } else {
+            params.delete(key);
+          }
+        } else if (action === "add" && !values.includes(value)) {
+          values.push(value);
+          params.set(key, values.join(", "));
+        }
+
+        return decodeURIComponent(params.toString());
+      }
+        */
+      function editUrlParams(urlParams, key, value, action) {
+        const params = new URLSearchParams(urlParams);
+
+        if (key === "@CongregationID") {
+          // Ensure value is an integer and not a list or invalid type
+          if (action === "add") {
+            if (!Number.isInteger(Number(value)) || Array.isArray(value)) {
+              throw new Error(
+                "@CongregationID must be a single integer value."
+              );
+            }
+            params.set(key, value);
+          } else if (action === "remove") {
+            params.delete(key); // If removing, completely delete @CongregationID
+          }
+          return cleanUpParams(params);
+        }
+
+        if (!params.has(key)) {
+          if (action === "add") {
+            params.set(key, value);
+          }
+          return cleanUpParams(params);
+        }
+
+        let values = params.get(key).split(", ").filter(Boolean); // Remove empty values
+
+        if (action === "remove") {
+          values = values.filter((v) => v !== value);
+          if (values.length > 0) {
+            params.set(key, values.join(", "));
+          } else {
+            params.delete(key); // Delete the key if no values are left
+          }
+        } else if (action === "add" && !values.includes(value)) {
+          values.push(value);
+          params.set(key, values.join(", "));
+        }
+
+        return cleanUpParams(params);
+      }
+
+      // Helper function to clean up empty keys
+      function cleanUpParams(params) {
+        console.log("HERE");
+        console.log(params);
+        for (const key of [...params.keys()]) {
+          if (!params.get(key).trim()) {
+            params.delete(key);
+          }
+        }
+        return decodeURIComponent(params.toString());
+      }
+
+      window.addEventListener("widgetLoaded", function (event) {
+        console.log("|||===> widgetLoaded Event Fired for: " + event.detail);
+        document.getElementById("loader").className += " hidden";
+
+        if (event.detail == "CustomGroupFinderWidget") {
+          // Get Tag Click Elements
+          var tagElements = document.querySelectorAll(".filterBtn");
+
+          // Add Click Events for all Tags
+          for (var i = 0; i < tagElements.length; i++) {
+            tagElements[i].addEventListener("click", tagClickEvent);
+          }
+
+          // Add search events for text boxes on filters
+          const searchInputs = document.querySelectorAll(
+            ".searchContainer input[type='search']"
+          );
+
+          searchInputs.forEach((input) => {
+            input.addEventListener("keydown", function (event) {
+              if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission if inside a form
+
+                let key = this.getAttribute("data-filter");
+                let value = this.value.trim(); // Get input value and trim spaces
+                let action = this.getAttribute("data-action");
+                const urlParams = getUrlParams();
+
+                /*
+                console.log("HERE");
+                console.log(key);
+                console.log(value);
+                console.log(action);
+                console.log(urlParams);
+                */
+
+                if (value) {
+                  // Only execute search if there's a value
+                  executeSearch(urlParams, key, value, action);
+                }
+              }
+            });
+          });
+        }
+
+        function tagClickEvent() {
+          let key = this.getAttribute("data-filter");
+          let value = this.getAttribute("data-id");
+          let action = this.getAttribute("data-action");
+          const urlParams = getUrlParams();
+
+          if (action == "add") {
+            executeSearch(urlParams, key, value, action);
+          } else if (action == "remove") {
+            executeSearch(urlParams, key, value, action);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
