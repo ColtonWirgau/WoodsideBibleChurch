@@ -466,7 +466,7 @@ section:focus :has(.needHelpContainer) .btn::after {
   .groupTags {
     display: flex;
     gap: 1em;
-    align-items: center;
+    align-items: flex-end;
     list-style-type: none;
     margin: 0;
     padding: 0;
