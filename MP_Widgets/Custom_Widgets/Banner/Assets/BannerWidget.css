@@ -57,8 +57,8 @@
 
     .banner:hover, .banner:focus, .banner:focus-within, .bannerContainer:focus, .bannerContainer:hover, .bannerContainer:focus-within {
         outline-offset: -10px;
-        outline-color: #FFFFFF;
         outline-width: 1px;
+        outline-color: #FFFFFF;
         filter: brightness(1.025);
     }
 }
