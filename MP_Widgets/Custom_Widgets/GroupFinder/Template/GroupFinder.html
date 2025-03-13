@@ -86,7 +86,7 @@
         {% for group in DataSet1 %}
         {% assign leaderCount = 1 %}
         <div class="groupGrid{% if group.Group_Is_Full == true %} groupFull{% endif %}{% if group.Paused == true %} groupPaused{% endif %}">
-          <a class="shareBtn" href="{{DataSet4.0.GroupDetailsBaseURL}}{{group.Group_ID}}">
+          <a class="shareBtn" data-url="{{DataSet4.0.GroupDetailsBaseURL}}{{group.Group_ID}}">
             <i class="fas fa-share"></i>
           </a>
           <h4 class="groupTitle">
@@ -148,4 +148,5 @@
       </div>
     </section>
   </div>
+  <p id="copyMessage" class="copy-message">🔗 Link copied to clipboard!</p>
 </body>
