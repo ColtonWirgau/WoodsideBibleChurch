@@ -279,6 +279,39 @@
               }
             });
           });
+
+          document.querySelectorAll(".shareBtn").forEach((button) => {
+            button.addEventListener("click", async () => {
+              const url =
+                button.getAttribute("data-url") || window.location.href;
+              const title = document.title;
+              const text = "Check out this page!";
+
+              if (navigator.share) {
+                // ✅ Use Web Share API (iOS & modern browsers)
+                try {
+                  await navigator.share({ title, text, url });
+                  console.log("Content shared successfully");
+                } catch (error) {
+                  console.error("Error sharing:", error);
+                }
+              } else {
+                // ❌ Fallback: Copy to Clipboard
+                try {
+                  await navigator.clipboard.writeText(url);
+                  const copyMessage = document.getElementById("copyMessage");
+                  copyMessage.style.display = "block"; // Show success message
+                  setTimeout(() => (copyMessage.style.display = "none"), 2000); // Hide after 2s
+                  console.log("Link copied to clipboard!");
+                } catch (error) {
+                  console.error("Copy failed:", error);
+                  alert(
+                    "Your browser does not support sharing. Link copied to clipboard instead."
+                  );
+                }
+              }
+            });
+          });
         }
 
         function tagClickEvent() {
