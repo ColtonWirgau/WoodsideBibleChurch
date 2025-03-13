@@ -1215,6 +1215,10 @@ li:has(.blur) {
 }
 
 @media (min-width: 768px) {
+  .groupTitle {
+    width: 100%;
+  }
+  
   .leadGroupContainer {
     max-width: 720px;
   }
