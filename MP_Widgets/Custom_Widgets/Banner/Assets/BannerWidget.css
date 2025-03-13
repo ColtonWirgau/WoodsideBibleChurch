@@ -27,6 +27,7 @@
         outline-offset: -1px;
         outline-color: #1C2B39;
         outline-width: 1px;
+        outline-style: solid;
         text-decoration: none;
         -webkit-transition: outline-offset 0.25s ease-out, outline-width 0.25s ease-out, outline-color 0.25s ease-out, filter 0.25s ease-out;
         -moz-transition: outline-offset 0.25s ease-out, outline-width 0.25s ease-out, outline-color 0.25s ease-out, filter 0.25s ease-out;
