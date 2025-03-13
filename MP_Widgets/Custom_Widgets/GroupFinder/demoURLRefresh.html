@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link href="/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/GroupFinder/Assets/CustomGroups.css" rel="stylesheet" />
+    <link href="Assets/CustomGroups.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
@@ -115,7 +115,7 @@
                         data-component="CustomWidget"
                         data-sp="api_custom_GroupFinderWidget" 
                         data-params="{params}"
-                        data-template="/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/GroupFinder/Template/GroupFinder.html" 
+                        data-template="/Widgets/GroupFinder/Template/GroupFinder.html" 
                         data-requireUser="false" 
                         data-cache="false" 
                         data-host="woodsidebible"
@@ -231,16 +231,32 @@
 
       window.addEventListener("widgetLoaded", function (event) {
         console.log("|||===> widgetLoaded Event Fired for: " + event.detail);
-        document.getElementById("loader").className += " hidden";
+        document.getElementById("loader").classList.add("hidden");
 
         if (event.detail == "CustomGroupFinderWidget") {
-          // Get Tag Click Elements
+          // Get all elements with class "filterBtn"
           var tagElements = document.querySelectorAll(".filterBtn");
 
-          // Add Click Events for all Tags
+          // Add Click Events for all filter buttons
           for (var i = 0; i < tagElements.length; i++) {
             tagElements[i].addEventListener("click", tagClickEvent);
           }
+
+          // Fix for mobile: Listen for "change" event on select elements
+          document.querySelectorAll("select").forEach((select) => {
+            select.addEventListener("change", function () {
+              let selectedOption = this.options[this.selectedIndex];
+
+              if (selectedOption.classList.contains("filterBtn")) {
+                tagClickEvent.call(selectedOption);
+              }
+            });
+          });
+
+          // Ensure filter buttons inside select elements (like options) also trigger the event
+          document.querySelectorAll("option.filterBtn").forEach((option) => {
+            option.addEventListener("click", tagClickEvent);
+          });
 
           // Add search events for text boxes on filters
           const searchInputs = document.querySelectorAll(
@@ -258,17 +274,12 @@
                 const urlParams = getUrlParams();
 
                 if (value) {
-                  // Only execute search if there's a value
                   executeSearch(urlParams, key, value, action);
                 }
               }
             });
           });
         }
-
-        // THIS IS NOT WORKING NO MATTER WHERE I PUT IT OR WHAT I PUT IN tempParams
-        // groupTag.innerHTML = tag.replace('{params}', tempParams);
-        // window.ReinitWidget("CustomGroupFinderWidget");
 
         function tagClickEvent() {
           let key = this.getAttribute("data-filter");
