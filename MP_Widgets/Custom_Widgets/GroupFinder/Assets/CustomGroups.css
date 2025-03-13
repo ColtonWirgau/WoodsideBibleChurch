@@ -449,6 +449,14 @@ section:focus :has(.needHelpContainer) .btn::after {
   .groupAboutContainer {
     grid-area: about;
   }
+  
+  .groupAboutContainer > div {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+  }
 
   .groupTagsContainer {
     grid-area: tags;
