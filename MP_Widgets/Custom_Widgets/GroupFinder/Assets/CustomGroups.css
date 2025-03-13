@@ -1186,11 +1186,12 @@ li:has(.blur) {
   right: 0;
   text-align: center;
   background-color: var(--primaryColor);
-  color: var(--secondaryColor);
+  color: #FFFFFF;
   padding: 1em;
-  font-size: 1.2em;
-  opacity: 0.95;
+  opacity: 0.9;
   border-radius: 20px;
+  max-width: 400px;
+  margin: auto;
 }
 
 @container (width < 475px) {
