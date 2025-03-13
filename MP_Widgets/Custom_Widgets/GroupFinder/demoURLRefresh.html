@@ -26,9 +26,24 @@
       type="text/javascript"
       src="https://mpweb.azureedge.net/cdn/customWidget.js"
     ></script>
+    
+    <link href="https://coltonwirgau.github.io/WoodsideBibleChurch/MP%20Widgets/Custom%20Widgets/Banner/Assets/BannerWidget.css" rel="stylesheet" />
   </head>
 
   <body>
+    <div class="container">
+         <div id="CustomWidgetGroupHelpBanner" 
+             data-component="CustomWidget" 
+             data-sp="api_custom_BannerWidget" 
+             data-params="@BannerID=1"
+             data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/Banner/Template/BannerWidget.html" 
+             data-requireUser="false" 
+             data-cache="false" 
+             data-host="woodsidebible" 
+             data-debug="true">
+         </div>   
+    </div>
+    
     <script>
       /* All of the things that need to get done before loading anything else when first coming to the page */
       const loadingText = [
