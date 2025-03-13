@@ -16,7 +16,7 @@
     .banner {
         width: 100%;
         background-color: #62BB46;
-        background: linear-gradient(318deg, rgba(98,187,70,1) 0%, rgba(70,187,130,1) 50%, rgba(28,43,57,1) 100%);
+        background: linear-gradient(165deg, rgb(28, 43, 57) 0%, rgb(28, 43, 57) 50%, rgb(57, 115, 170) 100%);
         border-radius: 0;
         color: #FFFFFF;
         display: flex;
@@ -47,7 +47,7 @@
                 font-weight: 600;
                 padding: 0.5em 2em;
                 background-color: #1C2B39;
-                background: linear-gradient(225deg, rgb(28, 43, 57) 0%, rgb(57, 115, 170) 100%);
+                background: #62bb46;
                 position: relative;
                 border: none;
             }
