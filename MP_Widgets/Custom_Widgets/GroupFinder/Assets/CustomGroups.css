@@ -1330,3 +1330,15 @@ li:has(.blur) {
     max-width: 1320px;
   }
 }
+
+/* Edit this later to be in the right media query, hope I can do this in the container and not have to use HTML, but the container */
+@media (max-width: 992px) {
+  html:has(.groups) {
+    scroll-snap-type: y proximity;
+  }
+
+  .groupGrid {
+    scroll-snap-align: start;
+    scroll-snap-align: end;
+  }
+}
