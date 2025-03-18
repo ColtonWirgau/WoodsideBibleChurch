@@ -1340,5 +1340,6 @@ li:has(.blur) {
   .groupGrid {
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    scroll-margin-block: 1em;
   }
 }
