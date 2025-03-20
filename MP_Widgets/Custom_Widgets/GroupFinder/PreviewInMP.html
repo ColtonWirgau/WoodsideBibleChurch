@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link href="Assets/CustomGroups.css" rel="stylesheet" />
+    <link href="Assets/previewInMPAdditional.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
@@ -26,13 +27,14 @@
       type="text/javascript"
       src="https://mpweb.azureedge.net/cdn/customWidget.js"
     ></script>
-
-    
-    <link href="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/Banner/Assets/BannerWidget.css" rel="stylesheet" />
   </head>
 
   <body>
     <div id="groupFinderContainer" class="container">
+      <div id="loader" class="loader-container">
+        <div class="loader-bg"></div>
+        <div class="loader"></div>
+      </div>
       <div id="groupTag"></div>
     </div>
 
@@ -43,7 +45,7 @@
                         data-component="CustomWidget"
                         data-sp="api_custom_GroupFinderWidget" 
                         data-params="{params}"
-                        data-template="/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/GroupFinder/Template/GroupFinder.html" 
+                        data-template="/Widgets/GroupFinder/Template/GroupFinder.html" 
                         data-requireUser="false" 
                         data-cache="false" 
                         data-host="woodsidebible"
@@ -60,7 +62,7 @@
         "@Leaders",
         "@GroupIDs",
         "@Search",
-        "@Tags",
+        "@Tags"
       ];
 
       // Change the group tag to what is in the url parameters
@@ -72,5 +74,98 @@
           .map(([key, value]) => `${key}=${value}`)
           .join("&");
       }
+
+      function executeSearch(urlParams, key, value, action) {
+        // Show loader
+        document.getElementById("loader").classList.remove("hidden");
+
+        // Unbind Event Listeners
+        unbindListeners();
+
+        // Add/Remove whatever necessary filters in the URL Parameters (make sure all parameters are in the allowedKeys array,  if not remove)
+        const newParams = editUrlParams(urlParams, key, value, action);
+
+        // Reload the page with the updated parameters
+        const newUrl = new URL(window.location.href);
+        newUrl.search = newParams; // Replace the query string
+
+        window.location.replace(newUrl.href); // Replace the current URL and reload the page
+      }
+
+      function unbindListeners() {
+        var triggerElements = document.querySelectorAll(".filterBtn");
+
+        // Remove Change Events to all Group-Select Class Elements
+        for (var i = 0; i < triggerElements.length; i++) {
+          triggerElements[i].removeEventListener("click", function () {
+            tagClickEvent();
+          });
+        }
+      }
+
+      function editUrlParams(urlParams, key, value, action) {
+        const params = new URLSearchParams(urlParams);
+
+        if (key === "@CongregationID") {
+          // Ensure value is an integer and not a list or invalid type
+          if (action === "add") {
+            if (!Number.isInteger(Number(value)) || Array.isArray(value)) {
+              throw new Error(
+                "@CongregationID must be a single integer value."
+              );
+            }
+            params.set(key, value);
+          } else if (action === "remove") {
+            params.delete(key); // If removing, completely delete @CongregationID
+          }
+          return cleanUpParams(params);
+        }
+
+        if (!params.has(key)) {
+          if (action === "add") {
+            params.set(key, value);
+          }
+          return cleanUpParams(params);
+        }
+
+        // Split the list and remove empty values
+        let values = params.get(key).split(", ").filter(Boolean);
+
+        if (action === "remove") {
+          values = values.filter((v) => v !== value);
+          if (values.length > 0) {
+            params.set(key, values.join(", "));
+          } else {
+            // Delete the key if no values are left
+            params.delete(key);
+          }
+        } else if (action === "add" && !values.includes(value)) {
+          values.push(value);
+          params.set(key, values.join(", "));
+        }
+
+        return cleanUpParams(params);
+      }
+
+      // Helper function to clean up empty keys
+      function cleanUpParams(params) {
+        console.log("HERE");
+        console.log(params);
+        for (const key of [...params.keys()]) {
+          if (!params.get(key).trim()) {
+            params.delete(key);
+          }
+        }
+        return decodeURIComponent(params.toString());
+      }
+
+      window.addEventListener("widgetLoaded", function (event) {
+        console.log("|||===> widgetLoaded Event Fired for: " + event.detail);
+        document.getElementById("loader").classList.add("hidden");
+
+        if (event.detail == "CustomGroupFinderWidget") {
+        }
+      });
+    </script>
   </body>
 </html>
