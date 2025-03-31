@@ -15,4 +15,6 @@
 
 :root {
   font-size: 0.75em;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
