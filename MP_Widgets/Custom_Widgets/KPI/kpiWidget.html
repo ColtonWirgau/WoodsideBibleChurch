@@ -82,7 +82,19 @@
                 borderWidth: 1,
                 backgroundColor: kpiColors
               }
-            ]
+            ],
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                },
+                title: {
+                  display: true,
+                  text: event.detail.data.DataSet1[0].Title
+                }
+              }
+            }
           }
         });
       });
