@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chart.js Example</title>
+    <title>KPI Custom Widget</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="Assets/KPIWidget.css" rel="stylesheet" />
   </head>
   <body>
-    <div
+    <div id="kpiCustomWidget"></div>
+
+    <script type="text/javascript">
+      var tag = `
+            <div
       id="CustomWidgetKPI"
       data-component="CustomWidget"
       data-sp="api_custom_KPIWidget"
-      data-params="@kpiType=pie"
+      data-params="{params}"
       data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/KPI/Template/KPIWidget.html"
       data-requireUser="false"
       data-cache="false"
       data-host="woodsidebible"
       data-debug="true"
-    ></div>
+    ></div>`;
+
+      var kpiCustomWidget = document.getElementById("kpiCustomWidget");
+
+      const allowedKeys = ["@RecordID", "@PageID", "@kpiType"];
+
+      // Change the group tag to what is in the url parameters
+      kpiCustomWidget.innerHTML = tag.replace("{params}", getUrlParams());
+
+      function getUrlParams(url = window.location.href) {
+        const params = new URLSearchParams(new URL(url).search);
+        return Array.from(params.entries())
+          .map(([key, value]) => `${key}=${value}`)
+          .join("&");
+      }
+    </script>
 
     <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
 
@@ -27,6 +46,14 @@
         console.log(
           "|||===> widgetLoaded Event Fired for: " + event.detail.data.widgetId
         );
+
+        const params = new URLSearchParams(window.location.search);
+
+        const recordID = params.get("@RecordID");
+        const pageID = params.get("@PageID");
+
+        console.log("RecordID:", recordID);
+        console.log("PageID:", pageID);
 
         const kpiTitle = event.detail.data.DataSet1[0].Title;
         const kpiType = event.detail.data.DataSet1[0].Type;
