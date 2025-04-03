@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chart.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="Assets/KPIWidget.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div
+      id="CustomWidgetKPI"
+      data-component="CustomWidget"
+      data-sp="api_custom_KPIWidget"
+      data-params="@kpiType=pie"
+      data-template="Widgets/KPI/Template/KPIWidget.html"
+      data-requireUser="false"
+      data-cache="false"
+      data-host="woodsidebible"
+      data-debug="true"
+    ></div>
+
+    <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+      window.addEventListener("widgetLoaded", function (event) {
+        console.log(
+          "|||===> widgetLoaded Event Fired for: " + event.detail.data.widgetId
+        );
+
+        const kpiTitle = event.detail.data.DataSet1[0].Title;
+        const kpiType = event.detail.data.DataSet1[0].Type;
+        const kpiLabels = event.detail.data.DataSet2.map((item) => item.Label);
+        const kpiValues = event.detail.data.DataSet2.map((item) => item.Value);
+        const kpiColors = event.detail.data.DataSet2.map((item) => item.Color);
+
+        /* If we want to use session storage then we can here */
+        /*
+            if (sessionStorage.getItem("KpiType")) {
+              kpiType = sessionStorage.getItem("KpiType");
+            }
+            */
+
+        const ctx = document.getElementById("myChart").getContext("2d");
+
+        document.title = event.detail.data.DataSet1[0].Title;
+
+        const myChart = new Chart(ctx, {
+          type: event.detail.data.DataSet1[0].Type,
+          data: {
+            labels: kpiLabels,
+            datasets: [
+              {
+                data: kpiValues,
+                borderWidth: 1,
+                backgroundColor: kpiColors
+              }
+            ]
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
