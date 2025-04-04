@@ -40,6 +40,7 @@
     <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
 
     <canvas id="myChart" width="400" height="200"></canvas>
+    <h1 id="kpiWidgetErrorMessage">No Data</h1>
 
     <script>
       window.addEventListener("widgetLoaded", function (event) {
@@ -47,56 +48,61 @@
           "|||===> widgetLoaded Event Fired for: " + event.detail.data.widgetId
         );
 
-        const params = new URLSearchParams(window.location.search);
+        if (event.detail.data.DataSet1[0].Error) {
+          console.log("KPI Widget Error: Check Configuration");
+          document.getElementById("myChart").remove();
+        } else {
+          document.getElementById("kpiWidgetErrorMessage").remove();
 
-        const recordID = params.get("@RecordID");
-        const pageID = params.get("@PageID");
+          const kpiTitle = event.detail.data.DataSet1[0].Title;
+          const kpiType = event.detail.data.DataSet1[0].Type;
+          const kpiLabels = event.detail.data.DataSet2.map(
+            (item) => item.Label
+          );
+          const kpiValues = event.detail.data.DataSet2.map(
+            (item) => item.Value
+          );
+          const kpiColors = event.detail.data.DataSet2.map(
+            (item) => item.Color
+          );
 
-        console.log("RecordID:", recordID);
-        console.log("PageID:", pageID);
-
-        const kpiTitle = event.detail.data.DataSet1[0].Title;
-        const kpiType = event.detail.data.DataSet1[0].Type;
-        const kpiLabels = event.detail.data.DataSet2.map((item) => item.Label);
-        const kpiValues = event.detail.data.DataSet2.map((item) => item.Value);
-        const kpiColors = event.detail.data.DataSet2.map((item) => item.Color);
-
-        /* If we want to use session storage then we can here */
-        /*
+          /* If we want to use session storage then we can here */
+          /*
             if (sessionStorage.getItem("KpiType")) {
               kpiType = sessionStorage.getItem("KpiType");
             }
             */
 
-        const ctx = document.getElementById("myChart").getContext("2d");
+          const ctx = document.getElementById("myChart").getContext("2d");
 
-        document.title = event.detail.data.DataSet1[0].Title;
+          document.title = event.detail.data.DataSet1[0].Title;
 
-        const myChart = new Chart(ctx, {
-          type: event.detail.data.DataSet1[0].Type,
-          data: {
-            labels: kpiLabels,
-            datasets: [
-              {
-                data: kpiValues,
-                borderWidth: 1,
-                backgroundColor: kpiColors
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: "bottom"
-              },
-              title: {
-                display: true,
-                text: event.detail.data.DataSet1[0].Title
+          const myChart = new Chart(ctx, {
+            type: event.detail.data.DataSet1[0].Type,
+            data: {
+              labels: kpiLabels,
+              datasets: [
+                {
+                  data: kpiValues,
+                  borderWidth: 0,
+                  backgroundColor: kpiColors
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: "bottom"
+                },
+                title: {
+                  display: true,
+                  text: event.detail.data.DataSet1[0].Title
+                }
               }
             }
-          }
-        });
+          });
+        }
       });
     </script>
   </body>
