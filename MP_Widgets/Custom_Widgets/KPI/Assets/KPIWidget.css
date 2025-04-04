@@ -1,3 +1,7 @@
 * {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
+
+#kpiWidgetErrorMessage {
+  text-align: center;
+}
