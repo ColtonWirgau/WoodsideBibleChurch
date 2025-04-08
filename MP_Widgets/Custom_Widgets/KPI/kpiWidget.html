@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KPI Custom Widget</title>
+    <title>Chart.js Example</title>
     <link rel="icon" href="Assets/favicon.png" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="Assets/KPIWidget.css" rel="stylesheet" />
@@ -16,7 +16,7 @@
       data-component="CustomWidget"
       data-sp="api_custom_KPIWidget"
       data-params="{params}"
-      data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/KPI/Template/KPIWidget.html"
+      data-template="Widgets/KPI/Template/KPIWidget.html"
       data-requireUser="false"
       data-cache="false"
       data-host="woodsidebible"
@@ -25,7 +25,7 @@
 
       var kpiCustomWidget = document.getElementById("kpiCustomWidget");
 
-      const allowedKeys = ["@RecordID", "@PageID", "@kpiType"];
+      const allowedKeys = ["@RecordID", "@GUID"];
 
       // Change the group tag to what is in the url parameters
       kpiCustomWidget.innerHTML = tag.replace("{params}", getUrlParams());
@@ -41,7 +41,7 @@
     <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
 
     <canvas id="myChart" width="400" height="200"></canvas>
-    <h3 id="kpiWidgetErrorMessage">No Data</h3>
+    <h1 id="kpiWidgetErrorMessage">No Data</h1>
 
     <script>
       window.addEventListener("widgetLoaded", function (event) {
@@ -56,30 +56,35 @@
           document.getElementById("kpiWidgetErrorMessage").remove();
 
           const kpiTitle = event.detail.data.DataSet1[0].Title;
-          const kpiType = event.detail.data.DataSet1[0].Type;
+          console.log(kpiTitle);
+
+          const kpiType =
+            event.detail.data.DataSet1[0].Chart_Type.toLowerCase();
+          console.log(kpiType);
           const kpiLabels = event.detail.data.DataSet2.map(
             (item) => item.Label
           );
+          console.log(kpiLabels);
           const kpiValues = event.detail.data.DataSet2.map(
             (item) => item.Value
           );
-          const kpiColors = event.detail.data.DataSet2.map(
-            (item) => item.Color
-          );
+          console.log(kpiValues);
+          const defaultColors =
+            event.detail.data.DataSet1[0].Default_Colors.split(",").map((c) =>
+              c.trim()
+            );
 
-          /* If we want to use session storage then we can here */
-          /*
-            if (sessionStorage.getItem("KpiType")) {
-              kpiType = sessionStorage.getItem("KpiType");
-            }
-            */
+          const kpiColors = event.detail.data.DataSet2.map((item, index) => {
+            return item.Color || defaultColors[index % defaultColors.length];
+          });
+          console.log(kpiColors);
 
           const ctx = document.getElementById("myChart").getContext("2d");
 
-          document.title = event.detail.data.DataSet1[0].Title;
+          document.title = kpiTitle;
 
           const myChart = new Chart(ctx, {
-            type: event.detail.data.DataSet1[0].Type,
+            type: kpiType,
             data: {
               labels: kpiLabels,
               datasets: [
@@ -103,7 +108,7 @@
                 },
                 title: {
                   display: true,
-                  text: event.detail.data.DataSet1[0].Title
+                  text: kpiTitle
                 }
               }
             }
