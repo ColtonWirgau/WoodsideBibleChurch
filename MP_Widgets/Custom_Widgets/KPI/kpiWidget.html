@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chart.js Example</title>
+    <title>KPI Custom Widget</title>
     <link rel="icon" href="Assets/favicon.png" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="Assets/KPIWidget.css" rel="stylesheet" />
@@ -16,7 +16,7 @@
       data-component="CustomWidget"
       data-sp="api_custom_KPIWidget"
       data-params="{params}"
-      data-template="Widgets/KPI/Template/KPIWidget.html"
+      data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/KPI/Template/KPIWidget.html"
       data-requireUser="false"
       data-cache="false"
       data-host="woodsidebible"
@@ -41,7 +41,7 @@
     <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
 
     <canvas id="myChart" width="400" height="200"></canvas>
-    <h1 id="kpiWidgetErrorMessage">No Data</h1>
+    <h3 id="kpiWidgetErrorMessage">No Data</h3>
 
     <script>
       window.addEventListener("widgetLoaded", function (event) {
