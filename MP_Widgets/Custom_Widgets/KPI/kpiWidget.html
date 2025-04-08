@@ -79,6 +79,9 @@
           });
           console.log(kpiColors);
 
+          const xAxis = event.detail.data.DataSet1[0].X_Axis;
+          const yAxis = event.detail.data.DataSet1[0].Y_Axis;
+
           const ctx = document.getElementById("myChart").getContext("2d");
 
           document.title = kpiTitle;
@@ -97,6 +100,32 @@
             },
             options: {
               responsive: true,
+              ...(xAxis || yAxis
+                ? {
+                    scales: {
+                      ...(xAxis
+                        ? {
+                            x: {
+                              title: {
+                                display: true,
+                                text: xAxis
+                              }
+                            }
+                          }
+                        : {}),
+                      ...(yAxis
+                        ? {
+                            y: {
+                              title: {
+                                display: true,
+                                text: yAxis
+                              }
+                            }
+                          }
+                        : {})
+                    }
+                  }
+                : {}),
               plugins: {
                 legend: {
                   position: "bottom",
