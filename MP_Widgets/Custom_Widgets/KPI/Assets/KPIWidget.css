@@ -5,3 +5,8 @@
 #kpiWidgetErrorMessage {
   text-align: center;
 }
+
+#myChart {
+  height: 100% !important;
+  width: 100% !important;
+}
