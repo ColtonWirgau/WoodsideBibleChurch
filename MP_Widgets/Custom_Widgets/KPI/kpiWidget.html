@@ -81,6 +81,8 @@
 
           const xAxis = event.detail.data.DataSet1[0].X_Axis;
           const yAxis = event.detail.data.DataSet1[0].Y_Axis;
+          const showAxes = event.detail.data.DataSet1[0].Show_Axes;
+          const showLegend = event.detail.data.DataSet1[0].Show_Legend;
 
           const ctx = document.getElementById("myChart").getContext("2d");
 
@@ -100,7 +102,7 @@
             },
             options: {
               responsive: true,
-              ...(xAxis || yAxis
+              ...(showAxes
                 ? {
                     scales: {
                       ...(xAxis
@@ -127,18 +129,26 @@
                   }
                 : {}),
               plugins: {
-                legend: {
-                  position: "bottom",
-                  onHover: handleHover,
-                  onLeave: handleLeave,
-                  labels: {
-                    usePointStyle: true
-                  }
-                },
                 title: {
                   display: true,
                   text: kpiTitle
-                }
+                },
+                ...(showLegend
+                  ? {
+                      legend: {
+                        position: "bottom",
+                        onHover: handleHover,
+                        onLeave: handleLeave,
+                        labels: {
+                          usePointStyle: true
+                        }
+                      }
+                    }
+                  : {
+                      legend: {
+                        display: false
+                      }
+                    })
               }
             }
           });
