@@ -33,6 +33,7 @@
       function getUrlParams(url = window.location.href) {
         const params = new URLSearchParams(new URL(url).search);
         return Array.from(params.entries())
+          .filter(([key]) => allowedKeys.includes(key)) // Only allow approved keys
           .map(([key, value]) => `${key}=${value}`)
           .join("&");
       }
