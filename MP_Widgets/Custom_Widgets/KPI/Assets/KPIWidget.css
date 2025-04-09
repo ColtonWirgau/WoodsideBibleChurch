@@ -2,6 +2,12 @@
   font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
+html,
+body {
+  height: 100vw;
+  margin: 0;
+}
+
 #kpiWidgetErrorMessage {
   text-align: center;
 }
