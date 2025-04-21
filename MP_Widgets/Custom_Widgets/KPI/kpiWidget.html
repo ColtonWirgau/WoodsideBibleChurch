@@ -9,6 +9,7 @@
       id="MPWidgets"
       src="https://my.woodsidebible.org/widgets/dist/MPWidgets.js"
     ></script>
+    <script type="text/javascript" src="/dist/js/forceLogin.js"></script>
   </head>
   <body>
     <div id="kpiCustomWidget"></div>
@@ -45,7 +46,9 @@
 
     <script type="text/javascript" src="Assets/CustomWidgets.js"></script>
 
-    <mpp-user-login></mpp-user-login>
+    <div class="text-end" style="display: none;">
+      <mpp-user-login></mpp-user-login>
+    </div>
     <canvas id="myChart" width="400" height="200"></canvas>
     <h3 id="kpiWidgetErrorMessage">No Data</h3>
 
