@@ -1,63 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
     <title>Transferring to Group Finder</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="icon" href="Assets/favicon.png" type="image/png" />
     <link href="Assets/TransferToGroupFinder.css" rel="stylesheet" />
-    <script
-      id="MPWidgets"
-      src="https://my.woodsidebible.org/widgets/dist/MPWidgets.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="https://mpweb.azureedge.net/cdn/customWidget.js"
-    ></script>
   </head>
 
   <body>
     <div id="transferToGroupFinder"></div>
 
     <script type="text/javascript">
-      var tag = `
-            <div class="container">
-                    <div id="container"
-                      class="transferringContainer"
-                      data-component="CustomWidget"
-                      data-sp="api_custom_TransferToGroupFinderTool"
-                      data-params="{params}"
-                      data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/TransferToGroupFinderTool/Template/TransferToGroupFinder.html"
-                      data-requireUser="false"
-                      data-cache="false"
-                      data-host="woodsidebible"
-                      data-debug="true">
-                    </div>  
-                </div>`;
+      const tag = `
+        <div id="container"
+            class="transferringContainer"
+            data-component="CustomWidget"
+            data-sp="api_custom_TransferToGroupFinderTool"
+            data-params="{params}"
+            data-template="https://coltonwirgau.github.io/WoodsideBibleChurch/MP_Widgets/Custom_Widgets/TransferToGroupFinderTool/Template/TransferToGroupFinder.html"
+            data-requireUser="false"
+            data-cache="false"
+            data-host="woodsidebible"
+            data-debug="true">
+        </div>`;
 
       var redirectWidget = document.getElementById("transferToGroupFinder");
 
       function getPageAndSelectionID() {
         const urlParams = new URLSearchParams(window.location.search);
-        const newStoredProcParams =
-          "@PageID=" +
-          urlParams.get("pageID") +
-          "&@SelectionID=" +
-          urlParams.get("s");
-        console.log("New Stored Proc Params");
-        console.log(newStoredProcParams);
+        const pageID = parseInt(urlParams.get("pageID"), 10);
+        const selectionID = parseInt(urlParams.get("s"), 10);
 
-        return newStoredProcParams;
+        if (isNaN(pageID) || isNaN(selectionID)) {
+          console.error("Invalid pageID or selectionID");
+          return "";
+        }
+
+        return `@PageID=${pageID}&@SelectionID=${selectionID}`;
       }
 
       // Change the group tag to what is in the url parameters
@@ -65,20 +44,28 @@
         "{params}",
         getPageAndSelectionID()
       );
+    </script>
 
-      function executeSearch() {
-        let url = document.getElementById("redirectWidgetURL").innerHTML.trim(); // Trim to remove extra spaces
-        if (url) {
-          window.location.href = url; // Redirect to the extracted URL
-        } else {
-          console.error("No URL found in #redirectWidgetURL");
-        }
-      }
+    <script src="Assets/CustomWidgets.js"></script>
 
+    <script>
       window.addEventListener("widgetLoaded", function (event) {
-        console.log("|||===> widgetLoaded Event Fired for: " + event.detail);
+        const data = event.detail.data;
 
-        executeSearch();
+        // Check if DataSet2 is empty
+        if (!data.DataSet2 || data.DataSet2.length === 0) {
+          console.error("No Group ID's. Closing the window.");
+          window.close();
+          return;
+        }
+
+        const groupIDs = data.DataSet2.map((group) => group.Group_ID).join(",");
+
+        const transferURL =
+          data.DataSet1[0].GroupFinderBaseURL + "?@GroupIDs=" + groupIDs;
+
+        // Redirect the page to transferURL
+        window.location.href = transferURL;
       });
     </script>
   </body>
